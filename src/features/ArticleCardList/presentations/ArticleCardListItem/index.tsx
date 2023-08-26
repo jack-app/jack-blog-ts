@@ -7,13 +7,13 @@ type Tag = {
   color: string;
 };
 
-type Props = {
+export type Props = {
   imageUrl?: string;
   title: string;
   tags: Tag[];
 };
 
-export const ArticleCardsPresentation: React.FC<Props> = ({
+export const ArticleCardListItemPresentation: React.FC<Props> = ({
   imageUrl = "https://placehold.jp/360x240.png",
   title,
   tags,
