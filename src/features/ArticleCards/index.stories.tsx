@@ -9,7 +9,7 @@ export default {
 
 export const Default: StoryObj<T> = {
   args: {
-    imageUrl: "https://placehold.jp/360x240.png",
+    imageUrl: "https://placehold.jp/360x200.png",
     title: "Title",
     tags: [
       {
