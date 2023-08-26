@@ -24,7 +24,9 @@ export const ArticleCardsPresentation: React.FC<Props> = ({
       <h3>{title}</h3>
       <ul>
         {tags.map((tag) => (
-          <li key={tag.id}>{tag.name}</li>
+          <li key={tag.id} className="text-detail2">
+            {tag.name}
+          </li>
         ))}
       </ul>
     </div>

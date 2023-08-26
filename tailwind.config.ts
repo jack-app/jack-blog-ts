@@ -14,6 +14,17 @@ const config: Config = {
       white: "#FFFFFF",
       black: "#484335",
     },
+    fontFamily: {
+      body: ["Avenir", "hiragino kaku gothic pro", "sans-serif"],
+    },
+    fontSize: {
+      h1: ["24px", "32px"],
+      h2: ["20px", "28px"],
+      h3: ["18px", "26px"],
+      body: ["16px", "22px"],
+      detail1: ["14px", "18px"],
+      detail2: ["12px", "16px"],
+    },
   },
   plugins: [],
 };
