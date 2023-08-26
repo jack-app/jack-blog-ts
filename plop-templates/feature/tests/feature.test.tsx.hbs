@@ -1,0 +1,13 @@
+import '@testing-library/jest-dom'
+import { {{pascalCase name}} } from '..'
+import { waitFor, render, screen } from '@testing-library/react'
+
+it('render {{pascalCase name}} component', () => {
+  render(<{{pascalCase name}} />)
+
+  const heading = screen.getByRole('heading', {
+    name: 'Component',
+  })
+
+  expect(heading).toBeInTheDocument()
+})
