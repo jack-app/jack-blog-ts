@@ -9,12 +9,17 @@ export default {
 
 export const Default: StoryObj<T> = {
   args: {
-    imageUrl: "https://picsum.photos/100/100",
+    imageUrl: "https://placehold.jp/360x240.png",
     title: "Title",
     tags: [
       {
         id: "1",
-        name: "Tag1",
+        name: "frontend",
+        color: "#000000",
+      },
+      {
+        id: "2",
+        name: "Next.js",
         color: "#000000",
       },
     ],
