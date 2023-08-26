@@ -19,7 +19,7 @@ export const ArticleCardsPresentation: React.FC<Props> = ({
   tags,
 }) => {
   return (
-    <div>
+    <div className="bg-white">
       <Image src={imageUrl} alt={title} width={100} height={100} />
       <h3>{title}</h3>
       <ul>
