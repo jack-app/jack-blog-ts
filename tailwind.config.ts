@@ -1,20 +1,50 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/features/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    colors: {
+      "primary-100": "#FFFCF2",
+      "primary-500": "#FFC121",
+      "primary-900": "#FF5E2C",
+      white: "#FFFFFF",
+      black: "#484335",
+    },
+    fontFamily: {
+      body: ["Avenir", "hiragino kaku gothic pro", "sans-serif"],
+    },
+    fontSize: {
+      h1: ["24px", "32px"],
+      h2: ["20px", "28px"],
+      h3: ["18px", "26px"],
+      body: ["16px", "22px"],
+      detail1: ["14px", "18px"],
+      detail2: ["12px", "16px"],
+    },
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      spacing: {
+        10: "2px",
+        20: "4px",
+        30: "8px",
+        40: "12px",
+        50: "16px",
+        60: "24px",
+        70: "32px",
+        80: "40px",
+        90: "48px",
+        100: "56px",
+        110: "64px",
+        120: "80px",
+        130: "96px",
+        140: "112px",
+        150: "128px",
       },
     },
   },
   plugins: [],
-}
-export default config
+};
+export default config;

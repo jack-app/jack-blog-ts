@@ -1,5 +1,5 @@
-import React from 'react';
-import { ArticleCardsPresentation } from './presentations/';
+import React from "react";
+import { ArticleCardListPresentation } from "./presentations";
 
 type Props = {};
 
