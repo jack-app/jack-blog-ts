@@ -1,7 +1,7 @@
 import React from "react";
 import { Color, convertToColor } from "./logics";
 
-type Props = {
+export type Props = {
   name: string;
   color: Color;
   isButton?: boolean;

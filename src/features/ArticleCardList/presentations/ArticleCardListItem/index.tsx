@@ -1,10 +1,9 @@
 import React from "react";
 import Image from "next/image";
+import { Tag, Props as TagProps } from "@/ui/Tag";
 
-type Tag = {
+export type Tag = TagProps & {
   id: string;
-  name: string;
-  color: string;
 };
 
 export type Props = {
@@ -35,8 +34,8 @@ export const ArticleCardListItemPresentation: React.FC<Props> = ({
         <h3>{title}</h3>
         <ul className="flex gap-30">
           {tags.map((tag) => (
-            <li key={tag.id} className="rounded bg-primary-500 px-20 py-10 text-detail2">
-              {tag.name}
+            <li key={tag.id}>
+              <Tag name={tag.name} color={tag.color} />
             </li>
           ))}
         </ul>
