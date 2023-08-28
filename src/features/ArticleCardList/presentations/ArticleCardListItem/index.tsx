@@ -19,8 +19,8 @@ export const ArticleCardListItemPresentation: React.FC<Props> = ({
   tags,
 }) => {
   return (
-    <div className="bg-white max-w-[360px] w-full rounded-lg drop-shadow">
-      <div className="w-full aspect-[3/2] relative">
+    <article className="w-full max-w-[360px] rounded-lg bg-white drop-shadow">
+      <div className="relative aspect-[3/2] w-full">
         <Image
           src={imageUrl}
           alt={title}
@@ -31,16 +31,16 @@ export const ArticleCardListItemPresentation: React.FC<Props> = ({
           }}
         />
       </div>
-      <div className="p-50 flex flex-col gap-40">
+      <div className="flex flex-col gap-40 p-50">
         <h3>{title}</h3>
         <ul className="flex gap-30">
           {tags.map((tag) => (
-            <li key={tag.id} className="text-detail2 bg-primary-500 px-20 py-10 rounded">
+            <li key={tag.id} className="rounded bg-primary-500 px-20 py-10 text-detail2">
               {tag.name}
             </li>
           ))}
         </ul>
       </div>
-    </div>
+    </article>
   );
 };
