@@ -39,4 +39,31 @@ export default function (
       },
     ],
   });
+  plop.setGenerator("ui", {
+    description: "Create a new ui component",
+    prompts: [
+      {
+        type: "input",
+        name: "name",
+        message: "What is the name of the ui component?",
+      },
+    ],
+    actions: [
+      {
+        type: "add",
+        path: "src/ui/{{pascalCase name}}/index.tsx",
+        templateFile: "plop-templates/ui/ui.tsx.hbs",
+      },
+      {
+        type: "add",
+        path: "src/ui/{{pascalCase name}}/index.stories.tsx",
+        templateFile: "plop-templates/ui/ui.stories.tsx.hbs",
+      },
+      {
+        type: "add",
+        path: "src/ui/{{pascalCase name}}/tests/index.test.tsx",
+        templateFile: "plop-templates/ui/tests/ui.test.tsx.hbs",
+      },
+    ],
+  });
 }

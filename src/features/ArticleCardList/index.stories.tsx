@@ -13,17 +13,17 @@ export const Default: StoryObj<T> = {
       {
         id: "1",
         imageUrl: "https://placehold.jp/360x200.png",
-        title: "Title",
+        title: "jack-blogを支える技術",
         tags: [
           {
             id: "1",
             name: "frontend",
-            color: "#000000",
+            color: "default",
           },
           {
             id: "2",
             name: "Next.js",
-            color: "#000000",
+            color: "blue",
           },
         ],
       },
