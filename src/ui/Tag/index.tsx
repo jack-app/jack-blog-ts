@@ -5,9 +5,10 @@ type Props = {
   name: string;
   color: Color;
   isButton?: boolean;
+  handleClick?: () => void;
 };
 
-export const Tag: React.FC<Props> = ({ name, color, isButton = false }) => {
+export const Tag: React.FC<Props> = ({ name, color, isButton = false, handleClick }) => {
   const colorCode = convertToColor[color];
 
   return isButton ? (
@@ -16,6 +17,7 @@ export const Tag: React.FC<Props> = ({ name, color, isButton = false }) => {
       style={{
         backgroundColor: colorCode,
       }}
+      onClick={handleClick}
     >
       {name}
     </button>
