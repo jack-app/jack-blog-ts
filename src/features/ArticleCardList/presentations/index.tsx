@@ -4,12 +4,8 @@ import {
   Props as ArticleCardListItemPresentationProps,
 } from "./ArticleCardListItem";
 
-export type Item = ArticleCardListItemPresentationProps & {
-  id: string;
-};
-
 type Props = {
-  items: Item[];
+  items: ArticleCardListItemPresentationProps[];
 };
 
 export const ArticleCardListPresentation: React.FC<Props> = ({ items }) => {
