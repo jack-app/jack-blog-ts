@@ -1,5 +1,5 @@
 import { getDatabase } from "@/utils/notion";
-import { Item as ArticleType } from "../presentations";
+import { Props as ArticleCardListItemPresentationProps } from "../presentations/ArticleCardListItem";
 
 const fetchArticles = async () => {
   const databaseId = process.env.NOTION_DATABASE_ID;
@@ -18,10 +18,10 @@ const fetchArticles = async () => {
       };
     });
 
-  return results as ArticleType[];
+  return results as ArticleCardListItemPresentationProps[];
 };
 
-let articles: ArticleType[] | undefined;
+let articles: ArticleCardListItemPresentationProps[] | undefined;
 
 export const useArticles = () => {
   if (articles === undefined) {
