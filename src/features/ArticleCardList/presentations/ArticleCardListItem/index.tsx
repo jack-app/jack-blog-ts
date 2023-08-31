@@ -24,6 +24,7 @@ export const ArticleCardListItemPresentation: React.FC<Props> = ({
           src={imageUrl}
           alt={title}
           fill
+          objectFit="cover"
           style={{
             borderTopLeftRadius: "0.5rem",
             borderTopRightRadius: "0.5rem",
