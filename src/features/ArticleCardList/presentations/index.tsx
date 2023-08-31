@@ -4,7 +4,7 @@ import {
   Props as ArticleCardListItemPresentationProps,
 } from "./ArticleCardListItem";
 
-type Item = ArticleCardListItemPresentationProps & {
+export type Item = ArticleCardListItemPresentationProps & {
   id: string;
 };
 
