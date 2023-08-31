@@ -27,6 +27,56 @@ export const Default: StoryObj<T> = {
           },
         ],
       },
+      {
+        id: "2",
+        title: "だから僕はtailwindをやめた",
+        tags: [
+          {
+            id: "1",
+            name: "frontend",
+            color: "default",
+          },
+          {
+            id: "3",
+            name: "tailwind",
+            color: "green",
+          },
+        ],
+      },
+      {
+        id: "3",
+        imageUrl: "https://placehold.jp/360x200.png",
+        title: "Ginでジントニックを作る",
+        tags: [
+          {
+            id: "4",
+            name: "backend",
+            color: "brown",
+          },
+          {
+            id: "5",
+            name: "Go",
+            color: "blue",
+          },
+        ],
+      },
+      {
+        id: "4",
+        imageUrl: "https://placehold.jp/360x200.png",
+        title: "飲んで学ぶ飲酒駆動開発 〜DDDを原点から学ぶ〜",
+        tags: [
+          {
+            id: "4",
+            name: "backend",
+            color: "brown",
+          },
+          {
+            id: "6",
+            name: "DDD",
+            color: "purple",
+          },
+        ],
+      },
     ],
   },
 };

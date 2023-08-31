@@ -13,7 +13,7 @@ export type Props = {
 };
 
 export const ArticleCardListItemPresentation: React.FC<Props> = ({
-  imageUrl = "https://placehold.jp/360x240.png",
+  imageUrl = "/OrangeLogo.png",
   title,
   tags,
 }) => {
