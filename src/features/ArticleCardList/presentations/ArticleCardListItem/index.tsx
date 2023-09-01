@@ -27,10 +27,11 @@ export const ArticleCardListItemPresentation: React.FC<Props> = ({
           src={imageUrl}
           alt={title}
           fill
-          objectFit="cover"
+          sizes="(max-width: 360px) 100vw, 360px"
           style={{
             borderTopLeftRadius: "0.5rem",
             borderTopRightRadius: "0.5rem",
+            objectFit: "cover",
           }}
         />
       </div>
