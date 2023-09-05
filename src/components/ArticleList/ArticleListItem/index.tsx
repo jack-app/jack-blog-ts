@@ -1,6 +1,5 @@
 import React from "react";
-import Image from "next/image";
-import { Tag, Props as TagProps } from "@/ui/Tag";
+import { Tag, Props as TagProps } from "@/components/Tag";
 import Link from "next/link";
 
 export type Tag = TagProps & {
@@ -14,7 +13,7 @@ export type Props = {
   tags: Tag[];
 };
 
-export const ArticleCardListItemPresentation: React.FC<Props> = ({
+export const ArticleListItem: React.FC<Props> = ({
   id,
   imageUrl = "/OrangeLogo.png",
   title,
@@ -23,16 +22,11 @@ export const ArticleCardListItemPresentation: React.FC<Props> = ({
   return (
     <article className="relative w-full max-w-[360px] rounded-lg bg-white drop-shadow transition hover:drop-shadow-xl">
       <div className="relative aspect-[3/2] w-full">
-        <Image
+        <img
           src={imageUrl}
           alt={title}
-          fill
           sizes="(max-width: 360px) 100vw, 360px"
-          style={{
-            borderTopLeftRadius: "0.5rem",
-            borderTopRightRadius: "0.5rem",
-            objectFit: "cover",
-          }}
+          className="h-[240px] w-[360px] rounded-t-lg object-cover"
         />
       </div>
       <div className="flex flex-col gap-40 p-50">

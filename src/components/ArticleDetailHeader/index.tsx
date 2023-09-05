@@ -1,4 +1,4 @@
-import { Writer } from "@/ui/Writer";
+import { Writer } from "@/components/Writer";
 
 export type Props = {
   title: string;
@@ -6,11 +6,7 @@ export type Props = {
   writerImage: string;
 };
 
-export const ArticleDetailHeaderPresentation: React.FC<Props> = ({
-  title,
-  writerName,
-  writerImage,
-}) => {
+export const ArticleDetailHeader: React.FC<Props> = ({ title, writerName, writerImage }) => {
   return (
     <div className="flex flex-col items-center gap-40">
       <h1>{title}</h1>

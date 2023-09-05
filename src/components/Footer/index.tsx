@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import { MdOutlineWeb } from "react-icons/md";
 import { BsTwitter } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
@@ -9,7 +8,7 @@ export const Footer = () => {
     <footer className="w-full bg-primary-500 p-20">
       <div className="mx-auto flex w-full max-w-screen-xl items-center justify-around">
         <div className="flex w-6/12 justify-center">
-          <Image src="/logo.png" width={100} height={70} alt="logo" />
+          <img src="/logo.png" width={100} height={70} alt="logo" />
         </div>
         <div className="flex w-6/12 justify-evenly">
           <a href="https://jack-website.netlify.app/" target="_blank" rel="noopener noreferrer">

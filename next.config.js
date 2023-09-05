@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    domains: ["s3.us-west-2.amazonaws.com", "s3-us-west-2.amazonaws.com"],
-  },
+  output: "export",
+  images: { unoptimized: true },
 };
 
 module.exports = nextConfig;

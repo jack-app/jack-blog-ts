@@ -1,20 +1,16 @@
 import React from "react";
-import { ArticleDetail } from "@/features/ArticleDetail";
-import { Suspense } from "react";
-import { ErrorBoundary } from "react-error-boundary";
+import { ArticleDetailHeader } from "@/components/ArticleDetailHeader";
 
 type Props = {
-  id: string;
+  title: string;
+  writerName: string;
+  writerImage: string;
 };
 
-export const ArticleDetailScreen: React.FC<Props> = ({ id }) => {
+export const ArticleDetailScreen: React.FC<Props> = ({ title, writerName, writerImage }) => {
   return (
     <main>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ErrorBoundary fallback={<div>error</div>}>
-          <ArticleDetail id={id} />
-        </ErrorBoundary>
-      </Suspense>
+      <ArticleDetailHeader title={title} writerName={writerName} writerImage={writerImage} />
     </main>
   );
 };

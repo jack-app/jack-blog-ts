@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ArticleCardListPresentation } from "./presentations";
+import { ArticleList } from "./";
 
-type T = typeof ArticleCardListPresentation;
+type T = typeof ArticleList;
 
 export default {
-  component: ArticleCardListPresentation,
+  component: ArticleList,
 } satisfies Meta<T>;
 
 export const Default: StoryObj<T> = {
   args: {
-    items: [
+    articles: [
       {
         id: "1",
         imageUrl: "https://placehold.jp/360x200.png",
