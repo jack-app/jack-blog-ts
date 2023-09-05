@@ -1,6 +1,5 @@
-import { ArticleCardList } from "@/features/ArticleCardList";
-import React, { Suspense } from "react";
-import { ErrorBoundary } from "react-error-boundary";
+import { ArticleList } from "@/components/ArticleList";
+import React from "react";
 import { Props as ArticleListItemProps } from "@/features/ArticleCardList/presentations/ArticleCardListItem";
 
 type Props = {
@@ -10,7 +9,7 @@ type Props = {
 export const HomeScreen: React.FC<Props> = ({ articles }) => {
   return (
     <main>
-      <ArticleCardList articles={articles} />
+      <ArticleList articles={articles} />
     </main>
   );
 };
