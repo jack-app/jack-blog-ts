@@ -1,15 +1,16 @@
 import { ArticleCardList } from "@/features/ArticleCardList";
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import { Props as ArticleListItemProps } from "@/features/ArticleCardList/presentations/ArticleCardListItem";
 
-export const HomeScreen = () => {
+type Props = {
+  articles: ArticleListItemProps[];
+};
+
+export const HomeScreen: React.FC<Props> = ({ articles }) => {
   return (
     <main>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ErrorBoundary fallback={<div>error</div>}>
-          <ArticleCardList />
-        </ErrorBoundary>
-      </Suspense>
+      <ArticleCardList articles={articles} />
     </main>
   );
 };

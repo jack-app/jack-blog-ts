@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Writer } from "./";
+import { Writer } from ".";
 
 type T = typeof Writer;
 
