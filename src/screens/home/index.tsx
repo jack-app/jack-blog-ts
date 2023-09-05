@@ -1,6 +1,6 @@
 import { ArticleList } from "@/components/ArticleList";
 import React from "react";
-import { Props as ArticleListItemProps } from "@/features/ArticleCardList/presentations/ArticleCardListItem";
+import { Props as ArticleListItemProps } from "@/components/ArticleList/ArticleListItem";
 
 type Props = {
   articles: ArticleListItemProps[];

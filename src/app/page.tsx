@@ -1,6 +1,6 @@
 import { HomeScreen } from "@/screens/home";
 import { getDatabase } from "@/utils/notion";
-import { Props as ArticleCardListItemPresentationProps } from "@/features/ArticleCardList/presentations/ArticleCardListItem";
+import { Props as ArticleListItemProps } from "@/components/ArticleList/ArticleListItem";
 
 export default async function Home() {
   const fetchArticles = async () => {
@@ -20,7 +20,7 @@ export default async function Home() {
         };
       });
 
-    return results as ArticleCardListItemPresentationProps[];
+    return results as ArticleListItemProps[];
   };
 
   const articles = await fetchArticles();
