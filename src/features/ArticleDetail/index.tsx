@@ -1,12 +1,14 @@
-import React from 'react';
-import { ArticleDetailPresentation } from './presentations/';
+import React from "react";
+import { ArticleDetailPresentation } from "./presentations/";
 
-type Props = {};
+type Props = {
+  id: string;
+};
 
-export const ArticleDetail: React.FC<Props> = (props) => {
+export const ArticleDetail: React.FC<Props> = ({ id }) => {
   return (
     <div>
-      <h1>Component</h1>
+      <h1>{id}</h1>
     </div>
   );
 };
