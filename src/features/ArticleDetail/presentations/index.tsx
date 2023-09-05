@@ -1,15 +1,19 @@
 import React from "react";
 import { ArticleDetailHeaderPresentation } from "./header";
 
-type Props = {};
+type Props = {
+  title: string;
+  writerName: string;
+  writerImage: string;
+};
 
-export const ArticleDetailPresentation: React.FC<Props> = (props) => {
+export const ArticleDetailPresentation: React.FC<Props> = ({ title, writerName, writerImage }) => {
   return (
     <div>
       <ArticleDetailHeaderPresentation
-        title="記事のタイトル"
-        writerName="マロン"
-        writerImage="https://placehold.jp/150x150.png"
+        title={title}
+        writerName={writerName}
+        writerImage={writerImage}
       />
     </div>
   );

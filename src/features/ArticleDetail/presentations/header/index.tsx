@@ -1,6 +1,6 @@
 import { Writer } from "@/ui/Writer";
 
-type Props = {
+export type Props = {
   title: string;
   writerName: string;
   writerImage: string;
