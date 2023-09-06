@@ -13,7 +13,7 @@ export const ArticleDetailBody: React.FC<Props> = async ({ id }) => {
   return (
     <ArticleDetailBodyPresentation>
       {blocks.map((block: any) => (
-        <Fragment key={block.id}>{renderBlock(block)}</Fragment>
+        <Fragment key={block.id}>{renderBlock(block, id)}</Fragment>
       ))}
     </ArticleDetailBodyPresentation>
   );
