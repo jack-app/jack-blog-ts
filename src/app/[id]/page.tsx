@@ -1,6 +1,5 @@
-import { getPage, getDatabase } from "@/utils/notion";
-import { ArticleDetailBody } from "@/features/ArticleDetailBody";
-import { ArticleDetailHeader } from "@/features/ArticleDetailHeader";
+import { getDatabase } from "@/utils/notion";
+import { DetailScreen } from "@/screens/Detail";
 
 export async function generateStaticParams() {
   const databaseId = process.env.NOTION_DATABASE_ID;
@@ -19,11 +18,6 @@ export async function generateStaticParams() {
   return results;
 }
 
-export default async function Page({ params }: { params: { id: string } }) {
-  return (
-    <main className="my-90 flex flex-col items-center gap-110">
-      <ArticleDetailHeader id={params.id} />
-      <ArticleDetailBody id={params.id} />
-    </main>
-  );
+export default function Page({ params }: { params: { id: string } }) {
+  return <DetailScreen id={params.id} />;
 }
