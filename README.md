@@ -1,34 +1,136 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## **環境構築**
 
-## Getting Started
+### **1. このリポジトリをクローンする**
 
-First, run the development server:
+### **2. `.env.local`ファイルを作成する**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+中身はチームメンバーの誰かにもらってください。
+
+### 3. **依存関係をインストール**
+
+以下のコマンドを実行してください。
+
+```jsx
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 各種コマンド
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Next.jsを起動する
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```jsx
+npm run dev
+```
 
-## Learn More
+### storybookを起動する
 
-To learn more about Next.js, take a look at the following resources:
+```jsx
+npm run storybook
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### コンポーネントの雛形を作成する
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+[plop](https://plopjs.com/) を用いて、コンポーネントの雛形を作成できます。
 
-## Deploy on Vercel
+```jsx
+ npm run plop
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+その後コンポーネントの名前を入力すると、コンポーネントの雛形ファイルが生成されます。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 主な使用技術
+- Next.js
+- Notion API
+- Tailwind
+- storybook
+- testing-library
+- plop
+
+大まかな概要としては、NotionAPIからデータを取得し、Next.jsを用いてブログの形式に見た目を整えるという構成です。
+
+## ディレクトリ構成
+
+主なディレクトリ構成は以下のようになります。
+```
+┣ public/ *画像など静的ファイル
+┣ src/　
+┃  ┣ app/ *Next.jsのルーティングなど
+┃  ┣ features/ *特定の機能を持つコンポーネント
+┃  ┣ screens/ *ページ全体の見た目を構築する
+┃  ┣ ui/ *汎用コンポーネント
+┃  ┗ utils/ *汎用関数
+```
+本プロジェクトではNext.jsの機能の一つであるSSGを使用しています。このプロジェクトで表示される要素は基本的に静的要素のみからなるため、SSGの仕組みを使ってビルド時に静的コンテンツを作成することで初期表示速度の観点でパフォーマンスが良くなります。
+
+### app
+
+Next.jsの諸々の構成を担うディレクトリです。具体的には
+- ルーティング定義
+- global css、共通レイアウト
+- OGPなどのメタデータの設定
+- クエリパラメータの取得
+
+を担っています。
+
+### components
+
+特定の見た目や機能を実現するためのコンポーネントを集めたディレクトリです。
+
+`ArticleList`を例に、中身の構成を説明します。
+
+```
+ArticleList/　
+┣ hooks/　*特定の機能を呼び出すためのhooks
+┣ presentations/
+┃   ┣ ArticleListItem/　*子コンポーネント
+┃   ┃   ┗ index.tsx 
+┃   ┗ index.tsx 
+┣ tests/ *ArticleCardListのUIコンポーネントテスト
+┣ index.stories.tsx *presentationをstorybookで表示
+┗ index.tsx *hooksとpresentationを結合。最終的に利用されるコンポーネント
+```
+
+最終的なコンポーネントは主に見た目を債務にもつ `presentation` と、機能を債務に持つ `hook` からなります。
+
+このように分けることで
+
+- 債務が明確になり、1ファイルの記述量が減る
+- storybook、テストが書きやすくなる
+
+などのメリットがあります。
+
+`ArticleListItem`のような、特定のコンポーネント内でしか使えない子コンポーネントはfeaturesやuiに切り出さず、その親コンポーネント内に切り出します。
+子コンポーネントに対してtestとstorybookは作成しません。理由としては、親コンポーネントでの確認をすることでtestやstorybookをより実践的な形式で確認できるためです。
+
+### ui
+
+汎用的なコンポーネントです。tag、header, paginationなどがここにあたります。
+
+基本的に見た目のみを債務に持つので、 `hooks` や `presentation` 層はありません。ちょっとした関数などが必要な場合は `logics` ディレクトリを作成し、そこに処理を分けると良いです。
+
+### screen
+
+ページ単位での、画面全体の見た目を債務に持つ部分です。
+
+## デザインシステム
+
+### figma
+
+https://www.figma.com/embed?embed_host=notion&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FDMOZITRTBYFRCdlwiX9bzJ%2Fjack-blog%3Ftype%3Ddesign%26node-id%3D0%3A1%26mode%3Ddesign%26t%3Da0kWqdY0kmTeMWjF-1
+
+マークアップはfigmaに合わせて進めます。
+
+gapやpaddingなども定義しているのでそれらもfigmaに揃えます。
+
+### tailwind
+
+cssライブラリとしてtailwindを使っています。
+
+`tailwind.config.ts` にタイポグラフィー、余白、カラーの設定をしています。
+
+
+
+
+
+
+
