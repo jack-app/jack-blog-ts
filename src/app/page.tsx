@@ -53,9 +53,9 @@ export default async function Home({ searchParams }: { searchParams: { tag: stri
   const tags = await fetchAllTags();
 
   return (
-    <main>
-      <SearchTags tags={tags} />
+    <main className="my-90 flex justify-center gap-90">
       <ArticleList articles={articles} />
+      <SearchTags tags={tags} />
     </main>
   );
 }
