@@ -1,15 +1,17 @@
-import { HomeScreen } from "@/screens/home";
 import { getDatabase } from "@/utils/notion";
 import { Props as ArticleListItemProps } from "@/components/ArticleList/ArticleListItem";
+import { ArticleList } from "@/components/ArticleList";
+import { SearchTags, Tag } from "@/components/SearchTags";
 
-export default async function Home() {
+export default async function Home({ params }: { params: { tag: string } }) {
   const fetchArticles = async () => {
     const databaseId = process.env.NOTION_DATABASE_ID;
     const articleDb = await getDatabase(databaseId);
 
     const results = articleDb
       .filter((article: any) => {
-        return article.properties.Publish.checkbox === true;
+        const isPublished = article.properties.Publish.checkbox === true;
+        return isPublished;
       })
       .map((article: any) => {
         return {
@@ -23,7 +25,33 @@ export default async function Home() {
     return results as ArticleListItemProps[];
   };
 
-  const articles = await fetchArticles();
+  const fetchAllTags = async () => {
+    const databaseId = process.env.NOTION_DATABASE_ID;
+    const articleDb = await getDatabase(databaseId);
 
-  return <HomeScreen articles={articles} />;
+    const results = articleDb
+      .filter((article: any) => {
+        return article.properties.Publish.checkbox === true;
+      })
+      .map((article: any) => {
+        return article.properties.tag.multi_select;
+      })
+      .flat();
+
+    const uniqueTags = results.filter(
+      (tag: any, index: number, self: any) => self.findIndex((t: any) => t.id === tag.id) === index
+    );
+
+    return uniqueTags as Tag[];
+  };
+
+  const articles = await fetchArticles();
+  const tags = await fetchAllTags();
+
+  return (
+    <main>
+      <SearchTags tags={tags} />
+      <ArticleList articles={articles} />
+    </main>
+  );
 }
