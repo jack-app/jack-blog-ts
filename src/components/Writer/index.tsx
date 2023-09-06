@@ -1,13 +1,14 @@
 import React from "react";
+import Link from "next/link";
 
-type Props = {
+export type Props = {
   name: string;
   image: string;
 };
 
 export const Writer: React.FC<Props> = ({ name, image }) => {
   return (
-    <div className="flex items-center gap-30">
+    <Link className="flex items-center gap-30" href={`/?writer=${name}`}>
       <img
         src={image}
         alt={name}
@@ -16,6 +17,6 @@ export const Writer: React.FC<Props> = ({ name, image }) => {
         className="h-[24px] w-[24px] rounded-full object-cover"
       />
       <span className="text-detail1">{name}</span>
-    </div>
+    </Link>
   );
 };
