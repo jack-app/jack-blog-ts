@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Fragment } from "react";
 import styles from "./post.module.css";
+import createImage from "@/utils/createImage";
 
 const Text = ({ text }: { text: any }) => {
   if (!text) {
@@ -29,7 +30,7 @@ const Text = ({ text }: { text: any }) => {
   });
 };
 
-const renderNestedList = (block: any) => {
+const renderNestedList = (block: any, pageId: string) => {
   const { type } = block;
   const value = block[type];
   if (!value) return null;
@@ -37,12 +38,12 @@ const renderNestedList = (block: any) => {
   const isNumberedList = value.children[0].type === "numbered_list_item";
 
   if (isNumberedList) {
-    return <ol>{value.children.map((block: any) => renderBlock(block))}</ol>;
+    return <ol>{value.children.map((block: any) => renderBlock(block, pageId))}</ol>;
   }
-  return <ul>{value.children.map((block: any) => renderBlock(block))}</ul>;
+  return <ul>{value.children.map((block: any) => renderBlock(block, pageId))}</ul>;
 };
 
-export const renderBlock = (block: any) => {
+export const renderBlock = async (block: any, pageId: string) => {
   const { type, id } = block;
   const value = block[type];
 
@@ -72,17 +73,17 @@ export const renderBlock = (block: any) => {
         </h3>
       );
     case "bulleted_list": {
-      return <ul>{value.children.map((child: any) => renderBlock(child))}</ul>;
+      return <ul>{value.children.map((child: any) => renderBlock(child, pageId))}</ul>;
     }
     case "numbered_list": {
-      return <ol>{value.children.map((child: any) => renderBlock(child))}</ol>;
+      return <ol>{value.children.map((child: any) => renderBlock(child, pageId))}</ol>;
     }
     case "bulleted_list_item":
     case "numbered_list_item":
       return (
         <li key={block.id}>
           <Text text={value.rich_text} />
-          {!!value.children && renderNestedList(block)}
+          {!!value.children && renderNestedList(block, pageId)}
         </li>
       );
     case "to_do":
@@ -101,7 +102,7 @@ export const renderBlock = (block: any) => {
             <Text text={value.rich_text} />
           </summary>
           {block.children?.map((child: any) => (
-            <Fragment key={child.id}>{renderBlock(child)}</Fragment>
+            <Fragment key={child.id}>{renderBlock(child, pageId)}</Fragment>
           ))}
         </details>
       );
@@ -109,11 +110,18 @@ export const renderBlock = (block: any) => {
       return (
         <div className={styles.childPage}>
           <strong>{value.title}</strong>
-          {block.children.map((child: any) => renderBlock(child))}
+          {block.children.map((child: any) => renderBlock(child, pageId))}
         </div>
       );
     case "image":
-      let src = value.type === "external" ? value.external.url : value.file.url;
+      let src;
+      if (block.image.type === "file") {
+        src = await createImage(pageId, block.id, block.image.file.url);
+      }
+      if (block.image.type === "external") {
+        src = block.image.external.url;
+      }
+      src = value.type === "external" ? value.external.url : value.file.url;
 
       const caption = value.caption ? value.caption[0]?.plain_text : "";
       return (
@@ -181,11 +189,13 @@ export const renderBlock = (block: any) => {
     }
     case "column_list": {
       return (
-        <div className={styles.row}>{block.children.map((block: any) => renderBlock(block))}</div>
+        <div className={styles.row}>
+          {block.children.map((block: any) => renderBlock(block, pageId))}
+        </div>
       );
     }
     case "column": {
-      return <div>{block.children.map((child: any) => renderBlock(child))}</div>;
+      return <div>{block.children.map((child: any) => renderBlock(child, pageId))}</div>;
     }
     default:
       return `❌ Unsupported block (${
