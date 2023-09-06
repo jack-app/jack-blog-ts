@@ -1,11 +1,11 @@
 import React from "react";
-import { Writer, Props as WriterProps } from "../Writer";
+import { Writer, Props as WriterProps } from "@/components/Writer";
 
 type Props = {
   writers: WriterProps[];
 };
 
-export const SearchWriters: React.FC<Props> = ({ writers }) => {
+export const SearchWritersPresentation: React.FC<Props> = ({ writers }) => {
   return (
     <div className="flex max-w-[200px] flex-col gap-50">
       <h3>Writers</h3>

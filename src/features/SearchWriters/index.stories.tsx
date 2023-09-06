@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { SearchWriters } from "./";
+import { SearchWritersPresentation } from "./presentations/";
 
-type T = typeof SearchWriters;
+type T = typeof SearchWritersPresentation;
 
 export default {
-  component: SearchWriters,
+  component: SearchWritersPresentation,
 } satisfies Meta<T>;
 
 export const Default: StoryObj<T> = {
