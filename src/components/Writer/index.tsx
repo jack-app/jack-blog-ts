@@ -8,7 +8,7 @@ export type Props = {
 
 export const Writer: React.FC<Props> = ({ name, image }) => {
   return (
-    <Link className="flex items-center gap-30" href={`/?writer=${name}`}>
+    <Link className="flex items-center gap-30 hover:underline" href={`/?writer=${name}`}>
       <img
         src={image}
         alt={name}
