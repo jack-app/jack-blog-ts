@@ -1,6 +1,6 @@
 import React from "react";
-import { Color } from "@/components/Tag/logics";
-import { Tag } from "@/components/Tag";
+import { Color } from "@/ui/Tag/logics";
+import { Tag } from "@/ui/Tag";
 
 export type Tag = {
   id: string;

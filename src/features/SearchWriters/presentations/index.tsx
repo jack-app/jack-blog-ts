@@ -1,5 +1,5 @@
 import React from "react";
-import { Writer, Props as WriterProps } from "@/components/Writer";
+import { Writer, Props as WriterProps } from "@/ui/Writer";
 
 type Props = {
   writers: WriterProps[];

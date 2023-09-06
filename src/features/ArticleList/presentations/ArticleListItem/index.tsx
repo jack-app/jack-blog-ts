@@ -1,5 +1,5 @@
 import React from "react";
-import { Tag, Props as TagProps } from "@/components/Tag";
+import { Tag, Props as TagProps } from "@/ui/Tag";
 import Link from "next/link";
 
 export type Tag = TagProps & {

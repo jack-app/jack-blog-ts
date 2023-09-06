@@ -1,4 +1,4 @@
-import { Writer } from "@/components/Writer";
+import { Writer } from "@/ui/Writer";
 
 export type Props = {
   title: string;
