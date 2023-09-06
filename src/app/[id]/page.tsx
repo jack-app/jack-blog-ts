@@ -1,10 +1,9 @@
-import { getPage, getBlocks, getDatabase } from "@/utils/notion";
+import { getPage, getDatabase } from "@/utils/notion";
 import {
   Props as ArticleDetailHeaderProps,
   ArticleDetailHeader,
 } from "@/components/ArticleDetailHeader";
-import { renderBlock } from "@/components/ArticleDetailBody/logics/renderBlock";
-import { ArticleDetailBody } from "@/components/ArticleDetailBody";
+import { ArticleDetailBody } from "@/features/ArticleDetailBody";
 
 export async function generateStaticParams() {
   const databaseId = process.env.NOTION_DATABASE_ID;
@@ -35,16 +34,11 @@ export default async function Page({ params }: { params: { id: string } }) {
   };
 
   const headerItems = await fetchArticleHeader(params.id);
-  const blocks = await getBlocks(params.id);
 
   return (
     <main className="my-90 flex flex-col items-center gap-110">
       <ArticleDetailHeader {...headerItems} />
-      <ArticleDetailBody>
-        {blocks.map((block: any) => {
-          return renderBlock(block);
-        })}
-      </ArticleDetailBody>
+      <ArticleDetailBody id={params.id} />
     </main>
   );
 }
