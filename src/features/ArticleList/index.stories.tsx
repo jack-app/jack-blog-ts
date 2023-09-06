@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ArticleList } from "./";
+import { ArticleListPresentation } from "./presentations/";
 
-type T = typeof ArticleList;
+type T = typeof ArticleListPresentation;
 
 export default {
-  component: ArticleList,
+  component: ArticleListPresentation,
 } satisfies Meta<T>;
 
 export const Default: StoryObj<T> = {
