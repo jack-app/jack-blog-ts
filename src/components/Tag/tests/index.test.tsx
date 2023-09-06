@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom";
 import { Tag } from "..";
-import { waitFor, render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen } from "@testing-library/react";
 
 describe("Tag", () => {
   test("Tagに渡したnameが表示されるか", async () => {
@@ -10,16 +9,9 @@ describe("Tag", () => {
     expect(screen.getByText("Tag")).toBeInTheDocument();
   });
 
-  test("TagにisButtonを渡した場合、button要素が正常に働くか", async () => {
-    const handleClick = jest.fn();
-    render(<Tag name="Tag" color="default" isButton handleClick={handleClick} />);
+  test("TagにisButtonを渡した場合、link要素が正常に働くか", async () => {
+    render(<Tag name="Tag" color="default" isLink />);
 
-    expect(screen.getByRole("button")).toBeInTheDocument();
-
-    userEvent.click(screen.getByRole("button"));
-
-    await waitFor(() => {
-      expect(handleClick).toHaveBeenCalledTimes(1);
-    });
+    expect(screen.getByRole("link", { name: "Tag" })).toBeInTheDocument();
   });
 });

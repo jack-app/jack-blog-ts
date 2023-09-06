@@ -33,11 +33,11 @@ export const Default: StoryObj<T> = {
   },
 };
 
-export const Button: StoryObj<T> = {
+export const Link: StoryObj<T> = {
   args: {
     name: "Tag",
     color: "default",
-    isButton: true,
+    isLink: true,
   },
   argTypes: {
     color: {
