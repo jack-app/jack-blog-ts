@@ -1,9 +1,6 @@
 import { getPage, getDatabase } from "@/utils/notion";
-import {
-  Props as ArticleDetailHeaderProps,
-  ArticleDetailHeader,
-} from "@/components/ArticleDetailHeader";
 import { ArticleDetailBody } from "@/features/ArticleDetailBody";
+import { ArticleDetailHeader } from "@/features/ArticleDetailHeader";
 
 export async function generateStaticParams() {
   const databaseId = process.env.NOTION_DATABASE_ID;
@@ -23,21 +20,9 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const fetchArticleHeader = async (pageId: string) => {
-    const page: any = await getPage(pageId);
-
-    return {
-      title: page.properties.Name.title[0].plain_text,
-      writerImage: page.properties.Writer.created_by.avatar_url,
-      writerName: page.properties.Writer.created_by.name,
-    } as ArticleDetailHeaderProps;
-  };
-
-  const headerItems = await fetchArticleHeader(params.id);
-
   return (
     <main className="my-90 flex flex-col items-center gap-110">
-      <ArticleDetailHeader {...headerItems} />
+      <ArticleDetailHeader id={params.id} />
       <ArticleDetailBody id={params.id} />
     </main>
   );
