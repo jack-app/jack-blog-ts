@@ -3,7 +3,7 @@ import { Props as ArticleListItemProps } from "@/components/ArticleList/ArticleL
 import { ArticleList } from "@/components/ArticleList";
 import { SearchTags, Tag } from "@/components/SearchTags";
 
-export default async function Home({ params }: { params: { tag: string } }) {
+export default async function Home({ searchParams }: { searchParams: { tag: string } }) {
   const fetchArticles = async () => {
     const databaseId = process.env.NOTION_DATABASE_ID;
     const articleDb = await getDatabase(databaseId);
@@ -11,6 +11,10 @@ export default async function Home({ params }: { params: { tag: string } }) {
     const results = articleDb
       .filter((article: any) => {
         const isPublished = article.properties.Publish.checkbox === true;
+        const hasTag = article.properties.tag.multi_select.some((tag: any) => {
+          return tag.name === searchParams.tag;
+        });
+        if (searchParams.tag) return isPublished && hasTag;
         return isPublished;
       })
       .map((article: any) => {
