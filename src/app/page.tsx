@@ -2,8 +2,14 @@ import { getDatabase } from "@/utils/notion";
 import { Props as ArticleListItemProps } from "@/components/ArticleList/ArticleListItem";
 import { ArticleList } from "@/components/ArticleList";
 import { SearchTags, Tag } from "@/components/SearchTags";
+import { Props as WriterProps } from "@/components/Writer";
+import { SearchWriters } from "@/components/SearchWriters";
 
-export default async function Home({ searchParams }: { searchParams: { tag: string } }) {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { tag: string; writer: string };
+}) {
   const fetchArticles = async () => {
     const databaseId = process.env.NOTION_DATABASE_ID;
     const articleDb = await getDatabase(databaseId);
@@ -14,7 +20,9 @@ export default async function Home({ searchParams }: { searchParams: { tag: stri
         const hasTag = article.properties.tag.multi_select.some((tag: any) => {
           return tag.name === searchParams.tag;
         });
+        const hasWriter = article.properties.Writer.created_by.name === searchParams.writer;
         if (searchParams.tag) return isPublished && hasTag;
+        if (searchParams.writer) return isPublished && hasWriter;
         return isPublished;
       })
       .map((article: any) => {
@@ -49,13 +57,40 @@ export default async function Home({ searchParams }: { searchParams: { tag: stri
     return uniqueTags as Tag[];
   };
 
+  const fetchAllWriters = async () => {
+    const databaseId = process.env.NOTION_DATABASE_ID;
+    const articleDb = await getDatabase(databaseId);
+
+    const results = articleDb
+      .filter((article: any) => {
+        return article.properties.Publish.checkbox === true;
+      })
+      .map((article: any) => {
+        return {
+          name: article.properties.Writer.created_by.name,
+          image: article.properties.Writer.created_by.avatar_url,
+        };
+      });
+
+    const uniqueWriters = results.filter(
+      (writer: any, index: number, self: any) =>
+        self.findIndex((w: any) => w.name === writer.name) === index
+    );
+
+    return uniqueWriters as WriterProps[];
+  };
+
   const articles = await fetchArticles();
   const tags = await fetchAllTags();
+  const writers = await fetchAllWriters();
 
   return (
     <main className="my-90 flex justify-center gap-90">
       <ArticleList articles={articles} />
-      <SearchTags tags={tags} />
+      <div className="flex flex-col gap-60">
+        <SearchTags tags={tags} />
+        <SearchWriters writers={writers} />
+      </div>
     </main>
   );
 }
