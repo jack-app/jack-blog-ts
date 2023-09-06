@@ -1,6 +1,27 @@
-import { ArticleDetailScreen } from "@/screens/detail";
-import { getPage } from "@/utils/notion";
-import { Props as ArticleDetailHeaderProps } from "@/components/ArticleDetailHeader";
+import { getPage, getBlocks, getDatabase } from "@/utils/notion";
+import {
+  Props as ArticleDetailHeaderProps,
+  ArticleDetailHeader,
+} from "@/components/ArticleDetailHeader";
+import { renderBlock } from "@/components/ArticleDetailBody/logics/renderBlock";
+import { ArticleDetailBody } from "@/components/ArticleDetailBody";
+
+export async function generateStaticParams() {
+  const databaseId = process.env.NOTION_DATABASE_ID;
+  const articleDb = await getDatabase(databaseId);
+
+  const results = articleDb
+    .filter((article: any) => {
+      return article.properties.Publish.checkbox === true;
+    })
+    .map((article: any) => {
+      return {
+        id: article.id,
+      };
+    });
+
+  return results;
+}
 
 export default async function Page({ params }: { params: { id: string } }) {
   const fetchArticleHeader = async (pageId: string) => {
@@ -14,6 +35,16 @@ export default async function Page({ params }: { params: { id: string } }) {
   };
 
   const headerItems = await fetchArticleHeader(params.id);
+  const blocks = await getBlocks(params.id);
 
-  return <ArticleDetailScreen {...headerItems} />;
+  return (
+    <main className="my-90 flex flex-col items-center gap-110">
+      <ArticleDetailHeader {...headerItems} />
+      <ArticleDetailBody>
+        {blocks.map((block: any) => {
+          return renderBlock(block);
+        })}
+      </ArticleDetailBody>
+    </main>
+  );
 }
