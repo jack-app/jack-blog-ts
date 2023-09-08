@@ -92,9 +92,9 @@ ArticleList/　
 ┗ index.tsx *hooksとpresentationを結合。最終的に利用されるコンポーネント
 ```
 
-最終的なコンポーネントは主に見た目を債務にもつ `presentation` と、機能を債務に持つ `hook` からなります。
+データがどの様に表示されるかを債務に持つ `presentation component` と、何のデータがユーザーに表示されるかを管理する`container component` からなります。
 
-このように分けることで
+これは[コンテナ・プレゼンテーションパターン](https://zenn.dev/morinokami/books/learning-patterns-1/viewer/presentational-container-pattern)と呼ばれるものです。このように分けることで
 
 - 債務が明確になり、1ファイルの記述量が減る
 - storybook、テストが書きやすくなる
