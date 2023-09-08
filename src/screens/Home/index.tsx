@@ -9,9 +9,9 @@ type Props = {
 
 export const HomeScreen: React.FC<Props> = async ({ tag, writer }) => {
   return (
-    <main className="my-90 flex justify-center gap-90">
+    <main className="my-70  flex justify-center gap-90 md:my-90">
       <ArticleList tag={tag} writer={writer} />
-      <div className="flex flex-col gap-60">
+      <div className="hidden flex-col gap-60 lg:flex">
         <SearchTags />
         <SearchWriters />
       </div>

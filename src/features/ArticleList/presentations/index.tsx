@@ -7,7 +7,7 @@ type Props = {
 
 export const ArticleListPresentation: React.FC<Props> = ({ articles }) => {
   return (
-    <div className="grid w-[744px] grid-cols-2 gap-x-60 gap-y-70">
+    <div className="grid w-[744px] justify-center gap-50 md:grid-cols-2 md:gap-x-60 md:gap-y-70">
       {articles.map((article) => (
         <ArticleListItemPresentation key={article.id} {...article} />
       ))}
