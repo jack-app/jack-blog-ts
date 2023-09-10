@@ -16,11 +16,7 @@ export async function generateStaticParams() {
   const uniqueResults = [...new Set(results)];
 
   return uniqueResults.map((writer) => {
-    return {
-      params: {
-        writer: encodeURIComponent(writer),
-      },
-    };
+    return { writer };
   });
 }
 
