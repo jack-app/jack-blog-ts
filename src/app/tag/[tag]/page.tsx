@@ -10,18 +10,18 @@ export async function generateStaticParams() {
       return article.properties.Publish.checkbox === true;
     })
     .map((article: any) => {
-      return article.properties.tag.multi_select.name;
+      return article.properties.tag.multi_select;
     })
     .flat();
 
-  const uniqueResults = [...new Set(results)];
+  const tagNames = results.map((tag: any) => {
+    return tag.name;
+  });
 
-  return uniqueResults.map((tag) => {
-    return {
-      params: {
-        tag: encodeURIComponent(tag),
-      },
-    };
+  const uniqueTagNames = [...new Set(tagNames)];
+
+  return uniqueTagNames.map((tag) => {
+    return { tag };
   });
 }
 
