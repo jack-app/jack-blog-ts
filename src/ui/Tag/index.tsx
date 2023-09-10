@@ -13,7 +13,7 @@ export const Tag: React.FC<Props> = ({ name, color, isLink = false }) => {
 
   return isLink ? (
     <Link
-      href={`/?tag=${name}`}
+      href={`/tag/${name}`}
       className="rounded px-20 py-10 text-detail2 text-white hover:opacity-80 active:opacity-60"
       style={{
         backgroundColor: colorCode,
