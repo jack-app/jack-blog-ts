@@ -3,8 +3,8 @@ import { SearchTags } from "@/features/SearchTags";
 import { SearchWriters } from "@/features/SearchWriters";
 
 type Props = {
-  tag: string;
-  writer: string;
+  tag?: string;
+  writer?: string;
 };
 
 export const HomeScreen: React.FC<Props> = async ({ tag, writer }) => {

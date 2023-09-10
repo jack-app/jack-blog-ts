@@ -2,7 +2,7 @@ import { getDatabase } from "@/utils/notion";
 import { Props as ArticleListItemProps } from "../presentations/ArticleListItem";
 import createImage from "@/utils/createImage";
 
-export const useArticles = async (tagParam: string, writerParam: string) => {
+export const useArticles = async (tagParam?: string, writerParam?: string) => {
   const databaseId = process.env.NOTION_DATABASE_ID;
   const articleDb = await getDatabase(databaseId);
 
