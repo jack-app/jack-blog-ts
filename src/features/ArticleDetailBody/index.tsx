@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import { ArticleDetailBodyPresentation } from "./presentations/";
 import { getBlocks } from "@/utils/notion";
 import { renderBlock } from "./hooks/renderBlock";
+import { ArticleDetailBodyPresentation } from "./presentations/";
 
 type Props = {
   id: string;

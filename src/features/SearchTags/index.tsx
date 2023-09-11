@@ -1,6 +1,6 @@
 import React from "react";
-import { SearchTagsPresentation } from "./presentations/";
 import { useTags } from "./hooks";
+import { SearchTagsPresentation } from "./presentations/";
 
 export const SearchTags = async () => {
   const tags = await useTags();

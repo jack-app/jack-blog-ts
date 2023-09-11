@@ -1,6 +1,6 @@
 import React from "react";
-import { ArticleDetailHeaderPresentation } from "./presentations/";
 import { useArticleHeader } from "./hooks";
+import { ArticleDetailHeaderPresentation } from "./presentations/";
 
 type Props = {
   id: string;

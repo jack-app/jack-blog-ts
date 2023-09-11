@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import { ArticleDetailHeaderPresentation } from "./presentations/";
+import type { Meta, StoryObj } from "@storybook/react";
 
 type T = typeof ArticleDetailHeaderPresentation;
 

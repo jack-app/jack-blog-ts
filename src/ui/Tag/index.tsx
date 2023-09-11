@@ -1,6 +1,6 @@
+import Link from "next/link";
 import React from "react";
 import { Color, convertToColor } from "./logics";
-import Link from "next/link";
 
 export type Props = {
   name: string;

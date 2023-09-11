@@ -1,6 +1,6 @@
 import React from "react";
-import { MdOutlineWeb } from "react-icons/md";
 import { BsTwitter } from "react-icons/bs";
+import { MdOutlineWeb } from "react-icons/md";
 import { MdEmail } from "react-icons/md";
 
 export const Footer = () => {

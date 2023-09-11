@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Fragment } from "react";
-import styles from "./post.module.css";
 import createImage from "@/utils/createImage";
+import styles from "./post.module.css";
 import { BookmarkPresentation } from "../presentations/blocks/bookmark";
 import { BulletedListPresentation } from "../presentations/blocks/bulletedList";
 import { NumberedListPresentation } from "../presentations/blocks/numberedList";

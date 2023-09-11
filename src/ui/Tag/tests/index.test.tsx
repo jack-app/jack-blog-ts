@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
-import { Tag } from "..";
 import { render, screen } from "@testing-library/react";
+import { Tag } from "..";
 
 describe("Tag", () => {
   test("Tagに渡したnameが表示されるか", async () => {

@@ -1,6 +1,6 @@
 import React from "react";
-import { ArticleListPresentation } from "./presentations/";
 import { useArticles } from "./hooks";
+import { ArticleListPresentation } from "./presentations/";
 
 type Props = {
   tag?: string;

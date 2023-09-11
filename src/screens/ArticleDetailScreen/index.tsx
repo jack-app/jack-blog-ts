@@ -1,5 +1,5 @@
-import { ArticleDetailHeader } from "@/features/ArticleDetailHeader";
 import { ArticleDetailBody } from "@/features/ArticleDetailBody";
+import { ArticleDetailHeader } from "@/features/ArticleDetailHeader";
 
 type Props = {
   id: string;

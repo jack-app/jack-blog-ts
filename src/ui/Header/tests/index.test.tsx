@@ -1,13 +1,13 @@
-import '@testing-library/jest-dom'
-import { Header } from '..'
-import { waitFor, render, screen } from '@testing-library/react'
+import "@testing-library/jest-dom";
+import { render, screen } from "@testing-library/react";
+import { Header } from "..";
 
-it('render Header component', () => {
-  render(<Header />)
+it("render Header component", () => {
+  render(<Header />);
 
-  const heading = screen.getByRole('heading', {
-    name: 'Component',
-  })
+  const heading = screen.getByRole("heading", {
+    name: "Component",
+  });
 
-  expect(heading).toBeInTheDocument()
-})
+  expect(heading).toBeInTheDocument();
+});
