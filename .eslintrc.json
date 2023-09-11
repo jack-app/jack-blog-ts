@@ -1,6 +1,6 @@
 // 参考：https://qiita.com/yukiji/items/5ba9e065ac6ed57d05a4
 {
-  "extends": ["next/core-web-vitals", "plugin:storybook/recommended"],
+  "extends": ["next/core-web-vitals", "plugin:storybook/recommended", "next"],
   "plugins": ["import", "unused-imports"],
   "rules": {
     "import/order": [
@@ -15,7 +15,6 @@
           "type",
           "index"
         ],
-        "newlines-between": "always", // グループ毎にで改行を入れる
         "pathGroupsExcludedImportTypes": ["builtin"],
         "alphabetize": {
           "order": "asc", // 昇順にソート
@@ -36,6 +35,7 @@
         ]
       }
     ],
-    "unused-imports/no-unused-imports": "error"
+    "unused-imports/no-unused-imports": "error",
+    "@next/next/no-img-element": "off"
   }
 }
