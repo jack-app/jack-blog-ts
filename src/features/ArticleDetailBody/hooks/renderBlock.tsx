@@ -3,8 +3,10 @@ import { Fragment } from "react";
 import styles from "./post.module.css";
 import createImage from "@/utils/createImage";
 import { BookmarkPresentation } from "../presentations/blocks/bookmark";
+import { BulletedListPresentation } from "../presentations/blocks/bulletedList";
+import { NumberedListPresentation } from "../presentations/blocks/numberedList";
 
-const Text = ({ text }: { text: any }) => {
+export const Text = ({ text }: { text: any }) => {
   if (!text) {
     return null;
   }
@@ -82,10 +84,18 @@ export const renderBlock = async (block: any, pageId: string) => {
         </h3>
       );
     case "bulleted_list": {
-      return <ul>{value.children.map((child: any) => renderBlock(child, pageId))}</ul>;
+      return (
+        <BulletedListPresentation>
+          {value.children.map((child: any) => renderBlock(child, pageId))}
+        </BulletedListPresentation>
+      );
     }
     case "numbered_list": {
-      return <ol>{value.children.map((child: any) => renderBlock(child, pageId))}</ol>;
+      return (
+        <NumberedListPresentation>
+          {value.children.map((child: any) => renderBlock(child, pageId))}
+        </NumberedListPresentation>
+      );
     }
     case "bulleted_list_item":
     case "numbered_list_item":
