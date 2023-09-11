@@ -1,5 +1,5 @@
 import { getDatabase } from "@/utils/notion";
-import { DetailScreen } from "@/screens/Detail";
+import { ArticleDetailScreen } from "@/screens/ArticleDetailScreen";
 
 export async function generateStaticParams() {
   const databaseId = process.env.NOTION_DATABASE_ID;
@@ -19,5 +19,5 @@ export async function generateStaticParams() {
 }
 
 export default function Page({ params }: { params: { id: string } }) {
-  return <DetailScreen id={params.id} />;
+  return <ArticleDetailScreen id={params.id} />;
 }

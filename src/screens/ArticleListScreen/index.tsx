@@ -7,7 +7,7 @@ type Props = {
   writer?: string;
 };
 
-export const HomeScreen: React.FC<Props> = async ({ tag, writer }) => {
+export const ArticleListScreen: React.FC<Props> = async ({ tag, writer }) => {
   return (
     <main className="my-70  flex justify-center gap-90 md:my-90">
       <ArticleList tag={tag} writer={writer} />
