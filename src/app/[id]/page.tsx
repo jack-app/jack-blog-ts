@@ -1,5 +1,5 @@
-import { getDatabase } from "@/utils/notion";
 import { ArticleDetailScreen } from "@/screens/ArticleDetailScreen";
+import { getDatabase } from "@/utils/notion";
 
 export async function generateStaticParams() {
   const databaseId = process.env.NOTION_DATABASE_ID;

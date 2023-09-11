@@ -1,6 +1,6 @@
+import Link from "next/link";
 import React from "react";
 import { Tag, Props as TagProps } from "@/ui/Tag";
-import Link from "next/link";
 
 export type Tag = TagProps & {
   id: string;

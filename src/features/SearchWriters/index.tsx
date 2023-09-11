@@ -1,6 +1,6 @@
 import React from "react";
-import { SearchWritersPresentation } from "./presentations/";
 import { useWriters } from "./hooks";
+import { SearchWritersPresentation } from "./presentations/";
 
 export const SearchWriters = async () => {
   const writers = await useWriters();
