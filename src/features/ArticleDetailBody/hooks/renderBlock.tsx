@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 import styles from "./post.module.css";
 import createImage from "@/utils/createImage";
+import { BookmarkPresentation } from "../presentations/blocks/bookmark";
 
 const Text = ({ text }: { text: any }) => {
   if (!text) {
@@ -24,7 +25,13 @@ const Text = ({ text }: { text: any }) => {
         style={color !== "default" ? { color } : {}}
         key={text.content}
       >
-        {text.link ? <a href={text.link.url}>{text.content}</a> : text.content}
+        {text.link ? (
+          <a href={text.link.url} className="text-link hover:underline">
+            {text.content}
+          </a>
+        ) : (
+          text.content
+        )}
       </span>
     );
   });
@@ -44,6 +51,8 @@ const renderNestedList = (block: any, pageId: string) => {
 };
 
 export const renderBlock = async (block: any, pageId: string) => {
+  // notionのブロックの種類によって、表示を変える
+  // ref:https://developers.notion.com/reference/block#block-types-that-support-child-blocks
   const { type, id } = block;
   const value = block[type];
 
@@ -159,12 +168,7 @@ export const renderBlock = async (block: any, pageId: string) => {
         </figure>
       );
     case "bookmark":
-      const href = value.url;
-      return (
-        <a href={href} target="_brank" className={styles.bookmark}>
-          {href}
-        </a>
-      );
+      return <BookmarkPresentation href={value.url} />;
     case "table": {
       return (
         <table className={styles.table}>

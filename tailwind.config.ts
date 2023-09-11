@@ -14,6 +14,7 @@ const config: Config = {
       "primary-900": "#FF5E2C",
       white: "#FFFFFF",
       black: "#484335",
+      link: "#00b0ff",
     },
     fontFamily: {
       body: ["Avenir", "hiragino kaku gothic pro", "sans-serif"],
