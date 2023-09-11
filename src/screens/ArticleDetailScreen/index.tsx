@@ -5,7 +5,7 @@ type Props = {
   id: string;
 };
 
-export const DetailScreen: React.FC<Props> = ({ id }) => {
+export const ArticleDetailScreen: React.FC<Props> = ({ id }) => {
   return (
     <main className="my-90 flex flex-col items-center gap-80">
       <ArticleDetailHeader id={id} />

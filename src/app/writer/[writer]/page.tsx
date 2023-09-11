@@ -1,4 +1,4 @@
-import { HomeScreen } from "@/screens/Home";
+import { ArticleListScreen } from "@/screens/ArticleListScreen";
 import { getDatabase } from "@/utils/notion";
 
 export async function generateStaticParams() {
@@ -22,5 +22,5 @@ export async function generateStaticParams() {
 
 export default function Page({ params }: { params: { writer: string } }) {
   params.writer = decodeURIComponent(params.writer); // 日本語のWriterをデコード
-  return <HomeScreen writer={params.writer} />;
+  return <ArticleListScreen writer={params.writer} />;
 }

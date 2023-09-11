@@ -80,3 +80,23 @@ export const Default: StoryObj<T> = {
     ],
   },
 };
+
+export const SearchTag: StoryObj<T> = {
+  args: {
+    articles: [
+      {
+        id: "1",
+        imageUrl: "https://placehold.jp/360x200.png",
+        title: "jack-blogを支える技術",
+        tags: [
+          {
+            id: "1",
+            name: "frontend",
+            color: "default",
+          },
+        ],
+      },
+    ],
+    tag: "frontend",
+  },
+};

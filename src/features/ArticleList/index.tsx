@@ -9,5 +9,5 @@ type Props = {
 
 export const ArticleList: React.FC<Props> = async ({ tag, writer }) => {
   const articles = await useArticles(tag, writer);
-  return <ArticleListPresentation articles={articles} />;
+  return <ArticleListPresentation articles={articles} tag={tag} writer={writer} />;
 };
