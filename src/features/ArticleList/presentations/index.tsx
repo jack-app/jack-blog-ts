@@ -7,6 +7,11 @@ type Props = {
   writer?: string;
 };
 
+/*
+ * @Props articles: 記事一覧, tag: タグ, writer: 作者名
+ * tagとwriterは同時には渡されない。
+ **/
+
 export const ArticleListPresentation: React.FC<Props> = ({ articles, tag, writer }) => {
   return (
     <div className="flex flex-col items-center gap-60 md:gap-80">
