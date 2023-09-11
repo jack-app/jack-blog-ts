@@ -2,8 +2,11 @@ import Link from "next/link";
 import { Fragment } from "react";
 import styles from "./post.module.css";
 import createImage from "@/utils/createImage";
+import { BookmarkPresentation } from "../presentations/blocks/bookmark";
+import { BulletedListPresentation } from "../presentations/blocks/bulletedList";
+import { NumberedListPresentation } from "../presentations/blocks/numberedList";
 
-const Text = ({ text }: { text: any }) => {
+export const Text = ({ text }: { text: any }) => {
   if (!text) {
     return null;
   }
@@ -24,7 +27,13 @@ const Text = ({ text }: { text: any }) => {
         style={color !== "default" ? { color } : {}}
         key={text.content}
       >
-        {text.link ? <a href={text.link.url}>{text.content}</a> : text.content}
+        {text.link ? (
+          <a href={text.link.url} className="text-link hover:underline">
+            {text.content}
+          </a>
+        ) : (
+          text.content
+        )}
       </span>
     );
   });
@@ -44,6 +53,8 @@ const renderNestedList = (block: any, pageId: string) => {
 };
 
 export const renderBlock = async (block: any, pageId: string) => {
+  // notionのブロックの種類によって、表示を変える
+  // ref:https://developers.notion.com/reference/block#block-types-that-support-child-blocks
   const { type, id } = block;
   const value = block[type];
 
@@ -73,10 +84,18 @@ export const renderBlock = async (block: any, pageId: string) => {
         </h3>
       );
     case "bulleted_list": {
-      return <ul>{value.children.map((child: any) => renderBlock(child, pageId))}</ul>;
+      return (
+        <BulletedListPresentation>
+          {value.children.map((child: any) => renderBlock(child, pageId))}
+        </BulletedListPresentation>
+      );
     }
     case "numbered_list": {
-      return <ol>{value.children.map((child: any) => renderBlock(child, pageId))}</ol>;
+      return (
+        <NumberedListPresentation>
+          {value.children.map((child: any) => renderBlock(child, pageId))}
+        </NumberedListPresentation>
+      );
     }
     case "bulleted_list_item":
     case "numbered_list_item":
@@ -159,12 +178,7 @@ export const renderBlock = async (block: any, pageId: string) => {
         </figure>
       );
     case "bookmark":
-      const href = value.url;
-      return (
-        <a href={href} target="_brank" className={styles.bookmark}>
-          {href}
-        </a>
-      );
+      return <BookmarkPresentation href={value.url} />;
     case "table": {
       return (
         <table className={styles.table}>
