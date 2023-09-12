@@ -7,8 +7,16 @@ export async function generateMetadata({
 }: {
   params: { writer: string };
 }): Promise<Metadata> {
+  const writer = decodeURIComponent(params.writer);
+  const title = `${writer}による記事一覧`;
   return {
-    title: `${decodeURIComponent(params.writer)}による記事一覧`,
+    title,
+    openGraph: {
+      title,
+    },
+    twitter: {
+      title: title,
+    },
   };
 }
 

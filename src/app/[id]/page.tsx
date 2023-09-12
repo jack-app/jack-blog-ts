@@ -48,7 +48,13 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   const title = page.properties.Name.title[0].plain_text;
 
   return {
-    title: title,
+    title,
+    openGraph: {
+      title,
+    },
+    twitter: {
+      title,
+    },
   };
 }
 
