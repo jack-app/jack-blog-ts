@@ -1,5 +1,12 @@
+import { Metadata } from "next";
 import { ArticleListScreen } from "@/screens/ArticleListScreen";
 import { getDatabase } from "@/utils/notion";
+
+export async function generateMetadata({ params }: { params: { tag: string } }): Promise<Metadata> {
+  return {
+    title: `${decodeURIComponent(params.tag)}に関する記事一覧`,
+  };
+}
 
 export async function generateStaticParams() {
   const databaseId = process.env.NOTION_DATABASE_ID;
