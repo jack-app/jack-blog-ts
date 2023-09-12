@@ -133,14 +133,9 @@ export const renderBlock = async (block: any, pageId: string) => {
         </div>
       );
     case "image":
-      let src;
-      if (block.image.type === "file") {
-        src = await createImage(pageId, block.id, block.image.file.url);
-      }
-      if (block.image.type === "external") {
-        src = block.image.external.url;
-      }
-      src = value.type === "external" ? value.external.url : value.file.url;
+      let src = "";
+      value.type === "external" && (src = value.external.url);
+      value.type === "file" && (src = await createImage(pageId, id, value.file.url));
 
       const caption = value.caption ? value.caption[0]?.plain_text : "";
       return (
