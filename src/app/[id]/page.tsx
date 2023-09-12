@@ -46,14 +46,30 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   const page: any = await getPage(params.id);
 
   const title = page.properties.Name.title[0].plain_text;
+  const description = "アプリ開発団体jackのブログサイトです。";
+  const image = {
+    url: "/ogp.png",
+    width: 1200,
+    height: 600,
+    alt: "jack blog",
+  };
 
   return {
     title,
     openGraph: {
-      title,
+      type: "website",
+      locale: "ja_JP",
+      url: "https://jackun-blog.vercel.app/",
+      siteName: title,
+      title: title,
+      description: description,
+      images: [image],
     },
     twitter: {
-      title,
+      card: "summary_large_image",
+      title: title,
+      description: description,
+      images: [image],
     },
   };
 }

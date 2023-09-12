@@ -9,13 +9,30 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const writer = decodeURIComponent(params.writer);
   const title = `${writer}による記事一覧`;
+  const description = "アプリ開発団体jackのブログサイトです。";
+  const image = {
+    url: "/ogp.png",
+    width: 1200,
+    height: 600,
+    alt: "jack blog",
+  };
+
   return {
     title,
     openGraph: {
-      title,
+      type: "website",
+      locale: "ja_JP",
+      url: "https://jackun-blog.vercel.app/",
+      siteName: title,
+      title: title,
+      description: description,
+      images: [image],
     },
     twitter: {
+      card: "summary_large_image",
       title: title,
+      description: description,
+      images: [image],
     },
   };
 }
