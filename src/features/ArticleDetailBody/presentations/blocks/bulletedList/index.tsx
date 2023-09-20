@@ -3,5 +3,5 @@ type Props = {
 };
 
 export const BulletedListPresentation: React.FC<Props> = ({ children }) => {
-  return <ul className="list-inside list-disc">{children}</ul>;
+  return <ul className="list-outside list-disc pl-40">{children}</ul>;
 };

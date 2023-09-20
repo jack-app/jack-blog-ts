@@ -40,16 +40,22 @@ export const Text = ({ text }: { text: any }) => {
 };
 
 const renderNestedList = (block: any, pageId: string) => {
-  const { type } = block;
-  const value = block[type];
-  if (!value) return null;
+  console.log(block);
 
-  const isNumberedList = value.children[0].type === "numbered_list_item";
+  const isNumberedList = block.type === "numbered_list_item";
 
   if (isNumberedList) {
-    return <ol>{value.children.map((block: any) => renderBlock(block, pageId))}</ol>;
+    return (
+      <NumberedListPresentation>
+        {block.children.map((block: any) => renderBlock(block, pageId))}
+      </NumberedListPresentation>
+    );
   }
-  return <ul>{value.children.map((block: any) => renderBlock(block, pageId))}</ul>;
+  return (
+    <BulletedListPresentation>
+      {block.children.map((block: any) => renderBlock(block, pageId))}
+    </BulletedListPresentation>
+  );
 };
 
 export const renderBlock = async (block: any, pageId: string) => {
@@ -86,7 +92,9 @@ export const renderBlock = async (block: any, pageId: string) => {
     case "bulleted_list": {
       return (
         <BulletedListPresentation>
-          {value.children.map((child: any) => renderBlock(child, pageId))}
+          {value.children.map((child: any) => {
+            return renderBlock(child, pageId);
+          })}
         </BulletedListPresentation>
       );
     }
@@ -102,7 +110,7 @@ export const renderBlock = async (block: any, pageId: string) => {
       return (
         <li key={block.id}>
           <Text text={value.rich_text} />
-          {!!value.children && renderNestedList(block, pageId)}
+          {block.has_children && renderNestedList(block, pageId)}
         </li>
       );
     case "to_do":
