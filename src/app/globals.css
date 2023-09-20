@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-primary-100 text-black font-body text-body;
+    @apply text-text bg-background font-body text-body;
   }
 
   h1 {
