@@ -3,5 +3,5 @@ type Props = {
 };
 
 export const NumberedListPresentation: React.FC<Props> = ({ children }) => {
-  return <ol className="list-inside list-decimal">{children}</ol>;
+  return <ol className="list-outside list-decimal pl-40 [counter-reset:section]">{children}</ol>;
 };

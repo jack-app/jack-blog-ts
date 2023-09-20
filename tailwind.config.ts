@@ -23,7 +23,7 @@ const config: Config = {
       h1: ["24px", "32px"],
       h2: ["20px", "28px"],
       h3: ["18px", "26px"],
-      body: ["16px", "22px"],
+      body: ["16px", "24px"],
       detail1: ["14px", "18px"],
       detail2: ["12px", "16px"],
     },

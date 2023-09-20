@@ -2,59 +2,15 @@ import Link from "next/link";
 import { Fragment } from "react";
 import createImage from "@/utils/createImage";
 import styles from "./post.module.css";
+import { Text } from "./renderText";
 import { BookmarkPresentation } from "../presentations/blocks/bookmark";
 import { BulletedListPresentation } from "../presentations/blocks/bulletedList";
+import { ListItem } from "../presentations/blocks/listItem";
 import { NumberedListPresentation } from "../presentations/blocks/numberedList";
-
-export const Text = ({ text }: { text: any }) => {
-  if (!text) {
-    return null;
-  }
-  return text.map((value: any) => {
-    const {
-      annotations: { bold, code, color, italic, strikethrough, underline },
-      text,
-    } = value;
-    return (
-      <span
-        className={[
-          bold ? styles.bold : "",
-          code ? styles.code : "",
-          italic ? styles.italic : "",
-          strikethrough ? styles.strikethrough : "",
-          underline ? styles.underline : "",
-        ].join(" ")}
-        style={color !== "default" ? { color } : {}}
-        key={text.content}
-      >
-        {text.link ? (
-          <a href={text.link.url} className="text-link hover:underline">
-            {text.content}
-          </a>
-        ) : (
-          text.content
-        )}
-      </span>
-    );
-  });
-};
-
-const renderNestedList = (block: any, pageId: string) => {
-  const { type } = block;
-  const value = block[type];
-  if (!value) return null;
-
-  const isNumberedList = value.children[0].type === "numbered_list_item";
-
-  if (isNumberedList) {
-    return <ol>{value.children.map((block: any) => renderBlock(block, pageId))}</ol>;
-  }
-  return <ul>{value.children.map((block: any) => renderBlock(block, pageId))}</ul>;
-};
 
 export const renderBlock = async (block: any, pageId: string) => {
   // notionのブロックの種類によって、表示を変える
-  // ref:https://developers.notion.com/reference/block#block-types-that-support-child-blocks
+  // ref: https://developers.notion.com/reference/block#block-types-that-support-child-blocks
   const { type, id } = block;
   const value = block[type];
 
@@ -86,7 +42,9 @@ export const renderBlock = async (block: any, pageId: string) => {
     case "bulleted_list": {
       return (
         <BulletedListPresentation>
-          {value.children.map((child: any) => renderBlock(child, pageId))}
+          {value.children.map((child: any) => {
+            return renderBlock(child, pageId);
+          })}
         </BulletedListPresentation>
       );
     }
@@ -99,12 +57,7 @@ export const renderBlock = async (block: any, pageId: string) => {
     }
     case "bulleted_list_item":
     case "numbered_list_item":
-      return (
-        <li key={block.id}>
-          <Text text={value.rich_text} />
-          {!!value.children && renderNestedList(block, pageId)}
-        </li>
-      );
+      return <ListItem block={block} richTexts={value.rich_text} pageId={pageId} />;
     case "to_do":
       return (
         <div>
