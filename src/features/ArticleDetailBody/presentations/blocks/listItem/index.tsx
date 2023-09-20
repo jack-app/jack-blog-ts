@@ -4,14 +4,14 @@ import { Block, RichText } from "@/types/block";
 
 type Props = {
   block: Block;
-  richText: RichText;
+  richTexts: RichText[];
   pageId: string;
 };
 
-export const ListItem: React.FC<Props> = ({ block, richText, pageId }) => {
+export const ListItem: React.FC<Props> = ({ block, richTexts, pageId }) => {
   return (
     <li key={block.id}>
-      <Text text={richText} />
+      <Text text={richTexts} />
       {block.has_children && renderNestedList(block, pageId)}
     </li>
   );

@@ -57,7 +57,7 @@ export const renderBlock = async (block: any, pageId: string) => {
     }
     case "bulleted_list_item":
     case "numbered_list_item":
-      return <ListItem block={block} richText={value.rich_text} pageId={pageId} />;
+      return <ListItem block={block} richTexts={value.rich_text} pageId={pageId} />;
     case "to_do":
       return (
         <div>

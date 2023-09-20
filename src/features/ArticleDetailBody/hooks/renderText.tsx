@@ -1,14 +1,15 @@
+import { RichText } from "@/types/block";
 import styles from "./post.module.css";
 
-export const Text = ({ text }: { text: any }) => {
-  if (!text) {
-    return null;
-  }
-  return text.map((value: any) => {
+export const Text = ({ text }: { text: RichText[] }) => {
+  return text.map((value: RichText) => {
     const {
       annotations: { bold, code, color, italic, strikethrough, underline },
       text,
     } = value;
+
+    if (!text) return null;
+
     return (
       <span
         className={[
