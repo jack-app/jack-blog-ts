@@ -15,7 +15,7 @@ export const Header = () => {
           アプリ開発団体jack メンバーズブログ
         </div>
       </div>
-      <div className="absolute z-10 h-full max-h-[400px] w-full bg-gradient-to-r from-primary-500 to-primary-900 opacity-90" />
+      <div className="to-secondary absolute z-10 h-full max-h-[400px] w-full bg-gradient-to-r from-primary opacity-90" />
       <img src="/HeaderBackground.png" alt="header" className="max-h-[400px] w-full" />
     </header>
   );

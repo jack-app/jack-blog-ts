@@ -9,11 +9,11 @@ const config: Config = {
   ],
   theme: {
     colors: {
-      "primary-100": "#FFFCF2",
-      "primary-500": "#FFC121",
-      "primary-900": "#FF5E2C",
+      background: "#FFFCF2",
+      primary: "#FFC121",
+      secondary: "#FF5E2C",
       white: "#FFFFFF",
-      black: "#484335",
+      text: "#484335",
       link: "#00b0ff",
     },
     fontFamily: {
