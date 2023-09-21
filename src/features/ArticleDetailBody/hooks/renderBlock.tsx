@@ -5,6 +5,7 @@ import styles from "./post.module.css";
 import { Text } from "./renderText";
 import { BookmarkPresentation } from "../presentations/blocks/bookmark";
 import { BulletedListPresentation } from "../presentations/blocks/bulletedList";
+import { Equation } from "../presentations/blocks/equation";
 import { ListItem } from "../presentations/blocks/listItem";
 import { NumberedListPresentation } from "../presentations/blocks/numberedList";
 
@@ -159,6 +160,8 @@ export const renderBlock = async (block: any, pageId: string) => {
     case "column": {
       return <div>{block.children.map((child: any) => renderBlock(child, pageId))}</div>;
     }
+    case "equation":
+      return <Equation math={value.expression} />;
     default:
       return `❌ Unsupported block (${
         type === "unsupported" ? "unsupported by Notion API" : type
