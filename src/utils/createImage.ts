@@ -1,7 +1,8 @@
 import fs from "fs";
 
 const createImage = async function (id: string, name: string, url: string) {
-  // 期限付きの画像を取得してpublicディレクトリに保存する
+  // Notionの画像は期限付きのURLなので、そのまま表示すると期限切れで表示できなくなる
+  // 期限付きの画像をコピーしてpublicディレクトリに保存する
   // 参考: https://github.com/0si43/shetommy.com/pull/36/files
 
   const path = `public/${id}/`;

@@ -20,6 +20,7 @@ export const getPage = async (pageId: string) => {
   return response;
 };
 
+// TODO: add types
 export const getBlocks = async (blockId: string) => {
   blockId = blockId.replaceAll("-", "");
 
