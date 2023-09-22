@@ -28,6 +28,7 @@
   font-family: monospace;
   display: flex;
   flex-wrap: wrap;
+  font-size: 14px;
 }
 
 .file {
