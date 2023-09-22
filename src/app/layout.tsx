@@ -38,7 +38,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja">
-      <body>
+      <body
+        style={{
+          minHeight: "100vh",
+          display: "grid",
+          gridTemplateRows: "auto 1fr auto",
+        }}
+      >
         <Header />
         {children}
         <Footer />

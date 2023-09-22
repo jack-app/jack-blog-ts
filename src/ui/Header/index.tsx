@@ -3,20 +3,24 @@ import React from "react";
 
 export const Header = () => {
   return (
-    <header className="relative aspect-[4/1] max-h-[400px] w-full">
+    <header className="relative aspect-[4/1] h-[48px] max-h-[400px] w-full sm:h-auto">
       <div className="absolute top-1/2 z-20 translate-y-[-50%] pl-[5%]">
         <Link
           href="/"
-          className=" font-['Inter'] text-[24px] font-thin tracking-widest text-white md:text-[32px]"
+          className="font-['Inter'] text-[16px] font-thin text-white sm:text-[24px] sm:tracking-widest md:text-[32px]"
         >
           jack blog
         </Link>
-        <div className="pt-50 text-[16px] text-white md:pt-60 md:text-[20px]">
+        <div className="hidden pt-50 text-[16px] text-white sm:block md:pt-60 md:text-[20px]">
           アプリ開発団体jack メンバーズブログ
         </div>
       </div>
-      <div className="to-secondary absolute z-10 h-full max-h-[400px] w-full bg-gradient-to-r from-primary opacity-90" />
-      <img src="/HeaderBackground.png" alt="header" className="max-h-[400px] w-full" />
+      <div className="absolute z-10 h-full max-h-[400px] w-full bg-gradient-to-r from-primary to-secondary opacity-90" />
+      <img
+        src="/HeaderBackground.png"
+        alt="header"
+        className="h-[48px] max-h-[400px] w-full sm:h-auto"
+      />
     </header>
   );
 };

@@ -12,7 +12,7 @@ export const ArticleDetailHeaderPresentation: React.FC<Props> = ({
   writerImage,
 }) => {
   return (
-    <div className="flex flex-col items-center gap-40">
+    <div className="flex flex-col items-center gap-40 px-40">
       <h1>{title}</h1>
       <Writer name={writerName} image={writerImage} />
     </div>
