@@ -7,7 +7,7 @@ type Props = {
 
 export const ArticleDetailScreen: React.FC<Props> = ({ id }) => {
   return (
-    <main className="my-90 flex flex-col items-center gap-80">
+    <main className="my-70 flex flex-col items-center gap-60 md:my-90 md:gap-80">
       <ArticleDetailHeader id={id} />
       <ArticleDetailBody id={id} />
     </main>
