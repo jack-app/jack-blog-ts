@@ -6,7 +6,7 @@ type Props = {
 
 export const ArticleDetailBodyPresentation: React.FC<Props> = ({ children }) => {
   return (
-    <section className="flex w-full max-w-[720px] flex-col gap-60 rounded-2xl bg-white px-70 py-90 shadow-md">
+    <section className="flex w-full max-w-[720px] flex-col gap-60 rounded-2xl bg-white px-70 py-90 drop-shadow-sm">
       {children}
     </section>
   );
