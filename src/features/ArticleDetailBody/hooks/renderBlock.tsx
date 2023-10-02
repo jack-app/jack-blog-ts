@@ -104,9 +104,7 @@ export const renderBlock = async (block: any, pageId: string) => {
     case "quote":
       return <blockquote key={id}>{value.rich_text[0].plain_text}</blockquote>;
     case "code":
-      return (
-        <CodePresentation id={id} code={value.rich_text[0].plain_text} language={value.language} />
-      );
+      return <CodePresentation code={value.rich_text[0].plain_text} language={value.language} />;
     case "file":
       const src_file = value.type === "external" ? value.external.url : value.file.url;
       const splitSourceArray = src_file.split("/");

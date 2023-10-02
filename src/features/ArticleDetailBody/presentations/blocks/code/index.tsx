@@ -1,15 +1,15 @@
+import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/prism";
+import { nord } from "react-syntax-highlighter/dist/esm/styles/prism";
+
 type Props = {
-  id: string;
   code: string;
   language: string;
 };
 
-export const CodePresentation: React.FC<Props> = ({ id, code, language }) => {
+export const CodePresentation: React.FC<Props> = ({ code, language }) => {
   return (
-    <pre className="">
-      <code className="" key={id}>
-        {code}
-      </code>
-    </pre>
+    <SyntaxHighlighter language={language} style={nord}>
+      {code}
+    </SyntaxHighlighter>
   );
 };
