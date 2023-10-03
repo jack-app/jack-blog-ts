@@ -63,3 +63,9 @@ export type Mention = {
 export type Reference = {
   id: string;
 };
+
+export type Code = {
+  Caption: RichText[];
+  RichTexts: RichText[];
+  Language: string;
+};

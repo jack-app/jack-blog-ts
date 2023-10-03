@@ -5,6 +5,7 @@ import styles from "./post.module.css";
 import { Text } from "./renderText";
 import { BookmarkPresentation } from "../presentations/blocks/bookmark";
 import { BulletedListPresentation } from "../presentations/blocks/bulletedList";
+import { CodePresentation } from "../presentations/blocks/code";
 import { Equation } from "../presentations/blocks/equation";
 import { ListItem } from "../presentations/blocks/listItem";
 import { NumberedListPresentation } from "../presentations/blocks/numberedList";
@@ -103,13 +104,7 @@ export const renderBlock = async (block: any, pageId: string) => {
     case "quote":
       return <blockquote key={id}>{value.rich_text[0].plain_text}</blockquote>;
     case "code":
-      return (
-        <pre className={styles.pre}>
-          <code className={styles.code_block} key={id}>
-            {value.rich_text[0].plain_text}
-          </code>
-        </pre>
-      );
+      return <CodePresentation code={value.rich_text[0].plain_text} language={value.language} />;
     case "file":
       const src_file = value.type === "external" ? value.external.url : value.file.url;
       const splitSourceArray = src_file.split("/");
@@ -163,8 +158,6 @@ export const renderBlock = async (block: any, pageId: string) => {
     case "equation":
       return <Equation math={value.expression} />;
     default:
-      return `❌ Unsupported block (${
-        type === "unsupported" ? "unsupported by Notion API" : type
-      })`;
+      return null;
   }
 };
