@@ -94,7 +94,7 @@ export const renderBlock = async (block: any, pageId: string) => {
 
       const caption = value.caption ? value.caption[0]?.plain_text : "";
       return (
-        <figure>
+        <figure className="mx-auto">
           <img src={src} alt={caption} />
           {caption && <figcaption>{caption}</figcaption>}
         </figure>
