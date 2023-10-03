@@ -158,8 +158,6 @@ export const renderBlock = async (block: any, pageId: string) => {
     case "equation":
       return <Equation math={value.expression} />;
     default:
-      return `❌ Unsupported block (${
-        type === "unsupported" ? "unsupported by Notion API" : type
-      })`;
+      return null;
   }
 };
