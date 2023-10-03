@@ -8,7 +8,7 @@ type Props = {
 
 export const CodePresentation: React.FC<Props> = ({ code, language }) => {
   return (
-    <SyntaxHighlighter language={language} style={nord} className="[&>code]:w-[0px]">
+    <SyntaxHighlighter language={language} style={nord} className="[&>code]:block [&>code]:w-[0px]">
       {code}
     </SyntaxHighlighter>
   );
