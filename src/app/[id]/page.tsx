@@ -18,12 +18,13 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   const svg = await satori(
     <div
       style={{
+        display: "flex",
         height: "100%",
         width: "100%",
-        display: "flex",
         alignItems: "center",
         justifyContent: "center",
         backgroundImage: "linear-gradient(90deg, #FFC121, #FF5E2C)",
+        fontFamily: "Noto Sans JP",
       }}
     >
       <div
@@ -41,8 +42,8 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
           padding: "32px",
         }}
       >
-        <div style={{ fontSize: "32px" }}>{title}</div>
-        <div style={{ fontSize: "20px" }}>@{writerName}</div>
+        <div style={{ display: "flex", fontSize: "32px" }}>{title}</div>
+        <div style={{ display: "flex", fontSize: "20px" }}>@{writerName}</div>
       </div>
     </div>,
     {
