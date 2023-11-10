@@ -19,7 +19,7 @@ export const Header = () => {
       <img
         src="/HeaderBackground.png"
         alt="header"
-        className="h-[48px] max-h-[400px] w-full sm:h-auto"
+        className="hidden aspect-[4/1] h-[48px] max-h-[400px] w-full sm:block sm:h-auto sm:object-cover"
       />
     </header>
   );

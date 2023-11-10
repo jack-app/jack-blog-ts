@@ -2,20 +2,14 @@ import { Props as ArticleListItemProps } from "@/ui/ArticleListItem";
 import createImage from "@/utils/createImage";
 import { getDatabase } from "@/utils/notion";
 
-export const useArticles = async (tagParam?: string, writerParam?: string) => {
+export const useArticles = async () => {
   const databaseId = process.env.NOTION_DATABASE_ID;
   const articleDb = await getDatabase(databaseId);
 
-  const results = await Promise.all(
+  const publicArticles = await Promise.all(
     articleDb
       .filter((article: any) => {
         const isPublished = article.properties.Publish.checkbox === true;
-        const hasTag = article.properties.tag.multi_select.some((tag: any) => {
-          return tag.name === tagParam;
-        });
-        const hasWriter = article.properties.Writer.created_by.name === writerParam;
-        if (tagParam) return isPublished && hasTag;
-        if (writerParam) return isPublished && hasWriter;
         return isPublished;
       })
       .map(async (article: any) => {
@@ -38,6 +32,17 @@ export const useArticles = async (tagParam?: string, writerParam?: string) => {
         return res;
       })
   );
+
+  const shuffleArray = (array: any[]) => {
+    for (let i = array.length - 1; i >= 0; i--) {
+      const tmp = Math.floor(Math.random() * (i + 1));
+      [array[i], array[tmp]] = [array[tmp], array[i]];
+    }
+    return array;
+  };
+
+  const suggestLength = 4;
+  const results = shuffleArray(publicArticles).slice(0, suggestLength);
 
   return results as ArticleListItemProps[];
 };

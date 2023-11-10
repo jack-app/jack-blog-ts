@@ -1,5 +1,5 @@
 import React from "react";
-import { Props as ArticleListItemProps, ArticleListItemPresentation } from "./ArticleListItem";
+import { Props as ArticleListItemProps, ArticleListItem } from "@/ui/ArticleListItem";
 
 type Props = {
   articles: ArticleListItemProps[];
@@ -19,7 +19,7 @@ export const ArticleListPresentation: React.FC<Props> = ({ articles, tag, writer
       {writer && <h1 className="px-40">{writer}による記事一覧</h1>}
       <div className="grid max-w-[744px] justify-center gap-50 md:grid-cols-2 md:gap-x-60 md:gap-y-70">
         {articles.map((article) => (
-          <ArticleListItemPresentation key={article.id} {...article} />
+          <ArticleListItem key={article.id} {...article} />
         ))}
       </div>
     </div>
