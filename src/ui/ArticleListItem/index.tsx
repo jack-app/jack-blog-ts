@@ -13,7 +13,7 @@ export type Props = {
   tags: Tag[];
 };
 
-export const ArticleListItemPresentation: React.FC<Props> = ({
+export const ArticleListItem: React.FC<Props> = ({
   id,
   imageUrl = "/OrangeLogo.png",
   title,
