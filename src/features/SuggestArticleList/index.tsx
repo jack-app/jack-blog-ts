@@ -1,8 +1,8 @@
 import React from "react";
+import { useArticles } from "./hooks";
 import { SuggestArticleListPresentation } from "./presentations/";
 
-type Props = {};
-
-export const SuggestArticleList: React.FC<Props> = (props) => {
-  return <SuggestArticleListPresentation />;
+export const SuggestArticleList = async () => {
+  const articles = await useArticles();
+  return <SuggestArticleListPresentation articles={articles} />;
 };
