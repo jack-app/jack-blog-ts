@@ -1,5 +1,6 @@
 import fs from "fs";
 import satori from "satori";
+import sharp from "sharp";
 
 // ogp画像を動的に生成。
 // Next.jsのデフォルトでサポートされているが、edgeランタイムで使用するとエラーになるため、satoriを使用。
@@ -7,8 +8,8 @@ const createOGPImage = async function (id: string, title: string, writerName: st
   const fontData = fs.readFileSync("public/ZenKakuGothicNew-Regular.ttf");
 
   const path = `public/${id}/`;
-  const cover = `${path}ogp.svg`;
-  const result = `/${id}/ogp.svg`;
+  const cover = `${path}ogp.png`;
+  const result = `/${id}/ogp.png`;
 
   if (!fs.existsSync(path)) {
     fs.mkdirSync(path);
@@ -59,7 +60,9 @@ const createOGPImage = async function (id: string, title: string, writerName: st
     }
   );
 
-  fs.writeFileSync(cover, svg);
+  // ogp画像ではsvgが使えないため、pngに変換する。
+  const pngData = await sharp(Buffer.from(svg)).png().toBuffer();
+  fs.writeFileSync(cover, pngData);
   return result;
 };
 

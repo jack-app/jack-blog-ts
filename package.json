@@ -26,6 +26,7 @@
     "react-katex": "^3.0.1",
     "react-syntax-highlighter": "^15.5.0",
     "satori": "^0.10.9",
+    "sharp": "^0.32.6",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2"
   },
@@ -44,6 +45,7 @@
     "@types/jest": "^29.5.4",
     "@types/react-katex": "^3.0.0",
     "@types/react-syntax-highlighter": "^15.5.7",
+    "@types/sharp": "^0.32.0",
     "autoprefixer": "^10.4.15",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-storybook": "^0.6.13",
