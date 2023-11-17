@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   const writerName = page.properties.Writer.created_by.name;
   const description = "アプリ開発団体jackのブログサイトです。";
 
-  const svg = await createOGPImage(title, writerName);
+  const ogpPath = await createOGPImage(params.id, title, writerName);
 
   return {
     title,
@@ -22,13 +22,13 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       siteName: title,
       title: title,
       description: description,
-      images: [svg],
+      images: [ogpPath],
     },
     twitter: {
       card: "summary_large_image",
       title: title,
       description: description,
-      images: [svg],
+      images: [ogpPath],
     },
   };
 }

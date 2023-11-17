@@ -1,5 +1,6 @@
 import { Props as ArticleListItemProps } from "@/ui/ArticleListItem";
 import createImage from "@/utils/createImage";
+import createOGPImage from "@/utils/createOGPImage";
 import { getDatabase } from "@/utils/notion";
 
 export const useArticles = async (tagParam?: string, writerParam?: string) => {
@@ -27,11 +28,15 @@ export const useArticles = async (tagParam?: string, writerParam?: string) => {
         } as ArticleListItemProps;
 
         // カバー画像のtypeがfileの場合、有効期限があるのでbufferに変換する
-        if (!article.cover) return res;
-        if (article.cover.type === "file") {
+        if (!article.cover) {
+          res.imageUrl = await createOGPImage(
+            article.id,
+            article.properties.Name.title[0].plain_text,
+            article.properties.Writer.created_by.name
+          );
+        } else if (article.cover.type === "file") {
           res.imageUrl = await createImage(article.id, "cover", article.cover.file.url);
-        }
-        if (article.cover.type === "external") {
+        } else if (article.cover.type === "external") {
           res.imageUrl = article.cover.external.url;
         }
 
