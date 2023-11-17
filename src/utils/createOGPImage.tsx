@@ -8,10 +8,13 @@ const createOGPImage = async function (id: string, title: string, writerName: st
 
   const path = `public/${id}/`;
   const cover = `${path}ogp.svg`;
+  const result = `/${id}/ogp.svg`;
 
   if (!fs.existsSync(path)) {
     fs.mkdirSync(path);
   }
+
+  if (fs.existsSync(cover)) return result;
 
   const svg = await satori(
     <div
@@ -46,7 +49,7 @@ const createOGPImage = async function (id: string, title: string, writerName: st
     </div>,
     {
       width: 1200,
-      height: 800,
+      height: 630,
       fonts: [
         {
           name: "Zen Kaku Gothic New",
@@ -57,7 +60,6 @@ const createOGPImage = async function (id: string, title: string, writerName: st
   );
 
   fs.writeFileSync(cover, svg);
-  const result = `/${id}/ogp.svg`;
   return result;
 };
 

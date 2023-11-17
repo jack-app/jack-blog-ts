@@ -21,15 +21,15 @@ export const ArticleListItem: React.FC<Props> = ({
 }) => {
   return (
     <article className="relative w-full max-w-[360px] rounded-lg bg-white drop-shadow transition hover:drop-shadow-xl">
-      <div className="relative aspect-[3/2] w-full">
+      <div className="relative w-full">
         <img
           src={imageUrl}
           alt={title}
           sizes="(max-width: 360px) 100vw, 360px"
-          className="h-[240px] w-[360px] rounded-t-lg object-cover"
+          className="h-[189px] w-[360px] rounded-t-lg object-cover"
         />
       </div>
-      <div className="flex flex-col gap-40 p-50">
+      <div className="flex h-[calc(100%-189px)] flex-col justify-between gap-30 p-60">
         <h3>
           <Link
             href={`/${id}`}
