@@ -13,6 +13,13 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 
   const ogpPath = await createOGPImage(params.id, title, writerName);
 
+  const image = {
+    url: ogpPath,
+    width: 1200,
+    height: 630,
+    alt: "jack blog",
+  };
+
   return {
     title,
     openGraph: {
@@ -22,13 +29,13 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       siteName: title,
       title: title,
       description: description,
-      images: [ogpPath],
+      images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title: title,
       description: description,
-      images: [ogpPath],
+      images: [image],
     },
   };
 }
