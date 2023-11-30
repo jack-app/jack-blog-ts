@@ -46,7 +46,7 @@ export const ArticleListItem: React.FC<Props> = ({
             {title}
           </Link>
         </h3>
-        <ul className="flex gap-30">
+        <ul className="flex flex-wrap gap-30">
           {tags.map((tag) => (
             <li key={tag.id}>
               <Tag name={tag.name} color={tag.color} />
