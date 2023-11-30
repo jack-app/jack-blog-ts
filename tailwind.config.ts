@@ -14,6 +14,7 @@ const config: Config = {
       secondary: "#FF5E2C",
       white: "#FFFFFF",
       text: "#484335",
+      subText: "#726A54",
       link: "#00b0ff",
     },
     fontFamily: {
