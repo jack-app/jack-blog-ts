@@ -41,7 +41,7 @@ const createOGPImage = async function (id: string, title: string, writerName: st
           color: "#484335",
           width: "90%",
           height: "85%",
-          padding: "32px",
+          padding: "32px 64px",
         }}
       >
         <div style={{ display: "flex", fontSize: "48px", fontWeight: "bold" }}>{title}</div>
