@@ -19,6 +19,7 @@ export const useArticles = async () => {
           imageUrl: undefined,
           title: article.properties.Name.title[0].plain_text,
           tags: article.properties.tag.multi_select,
+          publishDate: undefined,
         } as ArticleListItemProps;
 
         // カバー画像のtypeがfileの場合、有効期限があるのでbufferに変換する
@@ -32,6 +33,17 @@ export const useArticles = async () => {
           res.imageUrl = await createImage(article.id, "cover", article.cover.file.url);
         } else if (article.cover.type === "external") {
           res.imageUrl = article.cover.external.url;
+        }
+
+        // アドベントカレンダーの記事があれば、何日の記事かを追加する
+        if (
+          article.properties.tag.multi_select.some(
+            (tag: any) => tag.name === "アドベントカレンダー"
+          )
+        ) {
+          res.publishDate = article.properties.Publish_Date.date
+            ? article.properties.Publish_Date.date.start
+            : undefined;
         }
 
         return res;

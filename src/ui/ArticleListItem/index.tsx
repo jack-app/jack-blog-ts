@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { Tag, Props as TagProps } from "@/ui/Tag";
+import { formatDateForAdventCalender } from "./logics";
 
 export type Tag = TagProps & {
   id: string;
@@ -11,6 +12,7 @@ export type Props = {
   imageUrl?: string;
   title: string;
   tags: Tag[];
+  publishDate?: string;
 };
 
 export const ArticleListItem: React.FC<Props> = ({
@@ -18,6 +20,7 @@ export const ArticleListItem: React.FC<Props> = ({
   imageUrl = "/OrangeLogo.png",
   title,
   tags,
+  publishDate,
 }) => {
   return (
     <article className="relative w-full max-w-[360px] rounded-lg bg-white drop-shadow transition hover:drop-shadow-xl">
@@ -30,6 +33,11 @@ export const ArticleListItem: React.FC<Props> = ({
         />
       </div>
       <div className="flex h-[calc(100%-189px)] flex-col justify-between gap-30 p-60">
+        {publishDate && (
+          <div className="text-detail2 text-subText">
+            {formatDateForAdventCalender(publishDate)}
+          </div>
+        )}
         <h3>
           <Link
             href={`/${id}`}
