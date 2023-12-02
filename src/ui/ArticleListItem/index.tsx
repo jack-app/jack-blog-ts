@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { Tag, Props as TagProps } from "@/ui/Tag";
-import { formatDateForAdventCalender } from "./logics";
+import { formatDate } from "./logics";
 
 export type Tag = TagProps & {
   id: string;
@@ -12,7 +12,7 @@ export type Props = {
   imageUrl?: string;
   title: string;
   tags: Tag[];
-  publishDate?: string;
+  publishDate: string;
 };
 
 export const ArticleListItem: React.FC<Props> = ({
@@ -33,11 +33,7 @@ export const ArticleListItem: React.FC<Props> = ({
         />
       </div>
       <div className="flex h-[calc(100%-189px)] flex-col justify-between gap-30 p-60">
-        {publishDate && (
-          <div className="text-detail2 text-subText">
-            {formatDateForAdventCalender(publishDate)}
-          </div>
-        )}
+        {<div className="text-detail2 text-subText">{formatDate(publishDate, tags)}</div>}
         <h3>
           <Link
             href={`/${id}`}
