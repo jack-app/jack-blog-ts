@@ -24,6 +24,7 @@ export const Default: StoryObj<T> = {
         color: "blue",
       },
     ],
+    publishDate: "2021-10-10",
   },
 };
 
@@ -35,7 +36,7 @@ export const AdventCalendar: StoryObj<T> = {
     tags: [
       {
         id: "1",
-        name: "frontend",
+        name: "アドベントカレンダー",
         color: "default",
       },
       {

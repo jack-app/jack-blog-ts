@@ -7,7 +7,7 @@ export const useArticles = async (tagParam?: string, writerParam?: string) => {
   const databaseId = process.env.NOTION_DATABASE_ID;
   const articleDb = await getDatabase(databaseId);
 
-  const results = await Promise.all(
+  const articles = await Promise.all(
     articleDb
       .filter((article: any) => {
         const isPublished = article.properties.Publish.checkbox === true;
@@ -25,7 +25,9 @@ export const useArticles = async (tagParam?: string, writerParam?: string) => {
           imageUrl: undefined,
           title: article.properties.Name.title[0].plain_text,
           tags: article.properties.tag.multi_select,
-          publishDate: undefined,
+          publishDate: article.properties.Publish_Date.date
+            ? article.properties.Publish_Date.date.start
+            : article.created_time.slice(0, 10),
         } as ArticleListItemProps;
 
         // カバー画像のtypeがfileの場合、有効期限があるのでbufferに変換する
@@ -41,20 +43,13 @@ export const useArticles = async (tagParam?: string, writerParam?: string) => {
           res.imageUrl = article.cover.external.url;
         }
 
-        // アドベントカレンダーの記事があれば、何日の記事かを追加する
-        if (
-          article.properties.tag.multi_select.some(
-            (tag: any) => tag.name === "アドベントカレンダー"
-          )
-        ) {
-          res.publishDate = article.properties.Publish_Date.date
-            ? article.properties.Publish_Date.date.start
-            : undefined;
-        }
-
         return res;
       })
   );
+
+  const results = articles.sort((a, b) => {
+    return a.publishDate < b.publishDate ? 1 : -1;
+  });
 
   return results as ArticleListItemProps[];
 };

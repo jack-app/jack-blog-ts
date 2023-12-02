@@ -26,6 +26,7 @@ export const Default: StoryObj<T> = {
             color: "blue",
           },
         ],
+        publishDate: "2021-10-10",
       },
       {
         id: "2",
@@ -42,6 +43,7 @@ export const Default: StoryObj<T> = {
             color: "green",
           },
         ],
+        publishDate: "2021-10-10",
       },
       {
         id: "3",
@@ -59,6 +61,7 @@ export const Default: StoryObj<T> = {
             color: "blue",
           },
         ],
+        publishDate: "2021-10-10",
       },
       {
         id: "4",
@@ -76,6 +79,7 @@ export const Default: StoryObj<T> = {
             color: "purple",
           },
         ],
+        publishDate: "2021-10-10",
       },
     ],
   },

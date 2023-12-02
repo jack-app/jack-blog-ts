@@ -9,15 +9,10 @@ export const useArticleHeader = async (pageId: string) => {
     writerImage: page.properties.Writer.created_by.avatar_url,
     writerName: page.properties.Writer.created_by.name,
     tags: page.properties.tag.multi_select,
-    publishDate: undefined,
-  } as ArticleDetailHeaderProps;
-
-  // アドベントカレンダーの記事があれば、何日の記事かを追加する
-  if (page.properties.tag.multi_select.some((tag: any) => tag.name === "アドベントカレンダー")) {
-    res.publishDate = page.properties.Publish_Date.date
+    publishDate: page.properties.Publish_Date.date
       ? page.properties.Publish_Date.date.start
-      : undefined;
-  }
+      : page.created_time.slice(0, 10),
+  } as ArticleDetailHeaderProps;
 
   return res;
 };
