@@ -7,10 +7,10 @@ export const useArticles = async (tagParam?: string, writerParam?: string) => {
   const databaseId = process.env.NOTION_DATABASE_ID;
   const articleDb = await getDatabase(databaseId);
 
-  const results = await Promise.all(
+  const articles = await Promise.all(
     articleDb
       .filter((article: any) => {
-        const isPublished = article.properties.Publish.checkbox === false;
+        const isPublished = article.properties.Publish.checkbox === true;
         const hasTag = article.properties.tag.multi_select.some((tag: any) => {
           return tag.name === tagParam;
         });
@@ -46,5 +46,10 @@ export const useArticles = async (tagParam?: string, writerParam?: string) => {
         return res;
       })
   );
+
+  const results = articles.sort((a, b) => {
+    return a.publishDate < b.publishDate ? 1 : -1;
+  });
+
   return results as ArticleListItemProps[];
 };
