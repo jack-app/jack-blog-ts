@@ -24,6 +24,7 @@ export const Default: StoryObj<T> = {
         color: "blue",
       },
     ],
+    publishDate: "2021-10-10",
   },
 };
 
