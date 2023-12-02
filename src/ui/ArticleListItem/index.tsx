@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { Tag, Props as TagProps } from "@/ui/Tag";
-import { formatDate } from "./logics";
+import { formatDate } from "@/utils/formatDate";
 
 export type Tag = TagProps & {
   id: string;

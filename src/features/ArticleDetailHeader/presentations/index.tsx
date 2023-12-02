@@ -1,6 +1,6 @@
 import { Tag, Props as TagProps } from "@/ui/Tag";
 import { Writer } from "@/ui/Writer";
-import { formatDateForAdventCalender } from "../logics";
+import { formatDate } from "@/utils/formatDate";
 
 export type Tag = TagProps & {
   id: string;
@@ -11,7 +11,7 @@ export type Props = {
   writerName: string;
   writerImage: string;
   tags: Tag[];
-  publishDate?: string;
+  publishDate: string;
 };
 
 export const ArticleDetailHeaderPresentation: React.FC<Props> = ({
@@ -23,11 +23,7 @@ export const ArticleDetailHeaderPresentation: React.FC<Props> = ({
 }) => {
   return (
     <div className="flex flex-col items-start gap-60 px-40">
-      {publishDate && (
-        <span className="text-detail1 text-subText">
-          {formatDateForAdventCalender(publishDate)}
-        </span>
-      )}
+      <span className="text-detail1 text-subText">{formatDate(publishDate, tags)}</span>
       <div className="flex flex-col items-center gap-40 ">
         <h1 className="font-[24px]">{title}</h1>
         <Writer name={writerName} image={writerImage} />
