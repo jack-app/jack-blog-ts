@@ -19,7 +19,7 @@ export const renderBlock = async (block: any, pageId: string) => {
   switch (type) {
     case "paragraph":
       return (
-        <p>
+        <p className="whitespace-pre">
           <Text text={value.rich_text} />
         </p>
       );
