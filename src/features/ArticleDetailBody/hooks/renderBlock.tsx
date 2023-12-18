@@ -102,7 +102,12 @@ export const renderBlock = async (block: any, pageId: string) => {
     case "divider":
       return <hr key={id} />;
     case "quote":
-      return <blockquote key={id}>{value.rich_text[0].plain_text}</blockquote>;
+      console.log(value);
+      return (
+        <blockquote key={id} className="border-gray-300 border-s-4 p-40 italic">
+          <Text text={value.rich_text} />
+        </blockquote>
+      );
     case "code":
       return <CodePresentation code={value.rich_text[0].plain_text} language={value.language} />;
     case "file":
