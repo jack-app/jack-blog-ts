@@ -1,7 +1,7 @@
 import { Props as WriterProps } from "@/ui/Writer";
 import { getDatabase } from "@/utils/notion";
 
-export const useWriters = async () => {
+export const getAllWriters = async () => {
   const databaseId = process.env.NOTION_DATABASE_ID;
   const articleDb = await getDatabase(databaseId);
 
@@ -16,10 +16,17 @@ export const useWriters = async () => {
       };
     });
 
-  const uniqueWriters = results.filter(
-    (writer: any, index: number, self: any) =>
-      self.findIndex((w: any) => w.name === writer.name) === index
-  );
+  const uniqueWriters = results
+    .reduce((acc: any, curr: any) => {
+      const writer = acc.find((w: any) => w.name === curr.name);
+      if (writer) {
+        writer.number++;
+      } else {
+        acc.push({ ...curr, number: 1 });
+      }
+      return acc;
+    }, [])
+    .sort((a: any, b: any) => b.number - a.number);
 
   return uniqueWriters as WriterProps[];
 };

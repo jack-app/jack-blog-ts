@@ -1,10 +1,10 @@
-import { SearchWritersPresentation } from "./presentations/";
+import { WriterListPresentation } from "./presentations/";
 import type { Meta, StoryObj } from "@storybook/react";
 
-type T = typeof SearchWritersPresentation;
+type T = typeof WriterListPresentation;
 
 export default {
-  component: SearchWritersPresentation,
+  component: WriterListPresentation,
 } satisfies Meta<T>;
 
 export const Default: StoryObj<T> = {
@@ -19,6 +19,21 @@ export const Default: StoryObj<T> = {
         name: "馬狼照英",
         image: "https://placehold.jp/10x100.png",
         number: 2,
+      },
+      {
+        name: "千切豹馬",
+        image: "https://placehold.jp/100x10.png",
+        number: 1,
+      },
+      {
+        name: "千切豹馬",
+        image: "https://placehold.jp/100x10.png",
+        number: 1,
+      },
+      {
+        name: "千切豹馬",
+        image: "https://placehold.jp/100x10.png",
+        number: 1,
       },
       {
         name: "千切豹馬",

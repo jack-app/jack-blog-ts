@@ -11,5 +11,13 @@ export const Default: StoryObj<T> = {
   args: {
     name: "jack",
     image: "https://placehold.jp/24x24.png",
+    number: 1,
+  },
+};
+
+export const NoNumber: StoryObj<T> = {
+  args: {
+    name: "jack",
+    image: "https://placehold.jp/24x24.png",
   },
 };
