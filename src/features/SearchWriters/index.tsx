@@ -1,8 +1,8 @@
 import React from "react";
-import { useWriters } from "./hooks";
+import { getAllWriters } from "@/utils/getAllWriters";
 import { SearchWritersPresentation } from "./presentations/";
 
 export const SearchWriters = async () => {
-  const writers = await useWriters();
+  const writers = await getAllWriters();
   return <SearchWritersPresentation writers={writers} />;
 };

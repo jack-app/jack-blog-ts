@@ -1,7 +1,7 @@
 import { Props as WriterProps } from "@/ui/Writer";
 import { getDatabase } from "@/utils/notion";
 
-export const useWriters = async () => {
+export const getAllWriters = async () => {
   const databaseId = process.env.NOTION_DATABASE_ID;
   const articleDb = await getDatabase(databaseId);
 
