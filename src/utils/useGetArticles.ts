@@ -3,7 +3,13 @@ import createImage from "@/utils/createImage";
 import createOGPImage from "@/utils/createOGPImage";
 import { getDatabase } from "@/utils/notion";
 
-export const useArticles = async (tagParam?: string, writerParam?: string) => {
+/* 
+公開中の全ての記事を取得する関数
+tag名、writer名を指定すると、その条件に合致する記事を取得する
+**/
+type UseGetArticles = (tagParam?: string, writerParam?: string) => Promise<ArticleListItemProps[]>;
+
+export const useGetArticles: UseGetArticles = async (tagParam?: string, writerParam?: string) => {
   const databaseId = process.env.NOTION_DATABASE_ID;
   const articleDb = await getDatabase(databaseId);
 
