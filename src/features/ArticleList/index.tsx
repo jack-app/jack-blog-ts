@@ -1,5 +1,5 @@
 import React from "react";
-import { useArticles } from "./hooks";
+import { useGetArticles } from "@/utils/useGetArticles";
 import { ArticleListPresentation } from "./presentations/";
 
 type Props = {
@@ -8,6 +8,6 @@ type Props = {
 };
 
 export const ArticleList: React.FC<Props> = async ({ tag, writer }) => {
-  const articles = await useArticles(tag, writer);
+  const articles = await useGetArticles(tag, writer);
   return <ArticleListPresentation articles={articles} tag={tag} writer={writer} />;
 };
