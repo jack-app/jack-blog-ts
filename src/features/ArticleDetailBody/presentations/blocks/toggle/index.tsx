@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+import { renderBlock } from "@/features/ArticleDetailBody/hooks/renderBlock";
 import { Text } from "@/features/ArticleDetailBody/hooks/renderText";
 import { Toggle, Block } from "@/types/block";
 
@@ -14,10 +16,9 @@ export const TogglePresentation: React.FC<Props> = ({ childBlocks, toggle, pageI
       <summary>
         <Text text={toggle.rich_text} />
       </summary>
-      {/* {childBlocks?.map((child: Block) => (
+      {childBlocks?.map((child: Block) => (
         <Fragment key={child.id}>{renderBlock(child, pageId)}</Fragment>
-      ))} */}
-      hogehoge
+      ))}
     </details>
   );
 };

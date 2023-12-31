@@ -12,7 +12,7 @@ export const ColumnListPresentation: React.FC<Props> = ({ columnList, childBlock
   if (!columnList) return null;
   return (
     <div className={styles.row}>
-      {childBlocks && childBlocks.map((block: any) => renderBlock(block, pageId))}
+      {childBlocks && childBlocks.map((block: Block) => renderBlock(block, pageId))}
     </div>
   );
 };
