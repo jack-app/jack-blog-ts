@@ -1,7 +1,18 @@
+import { renderBlock } from "@/features/ArticleDetailBody/hooks/renderBlock";
+import { Block } from "@/types/block";
 type Props = {
-  children: React.ReactNode;
+  blocks?: Block[];
+  pageId: string;
 };
 
-export const NumberedListPresentation: React.FC<Props> = ({ children }) => {
-  return <ol className="list-outside list-decimal pl-40 [counter-reset:section]">{children}</ol>;
+export const NumberedListPresentation: React.FC<Props> = ({ blocks, pageId }) => {
+  if (!blocks) return null;
+  return (
+    <ol className="list-outside list-decimal pl-40 [counter-reset:section]">
+      {blocks &&
+        blocks.map((block: Block) => {
+          return renderBlock(block, pageId);
+        })}
+    </ol>
+  );
 };
