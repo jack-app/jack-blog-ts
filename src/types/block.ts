@@ -25,12 +25,14 @@ export type Block = {
   type: string;
   has_children: boolean;
   paragraph?: Paragraph;
-  heading1?: Heading1;
-  heading2?: Heading2;
-  heading3?: Heading3;
+  heading_1?: Heading1;
+  heading_2?: Heading2;
+  heading_3?: Heading3;
+  bulleted_list?: BulletedList;
+  numbered_list?: NumberedList;
   bulleted_list_item?: BulletedListItem;
   numbered_list_item?: NumberedListItem;
-  toDo?: ToDo;
+  to_do?: ToDo;
   image?: Image;
   file?: File;
   code?: Code;
@@ -39,12 +41,14 @@ export type Block = {
   callout?: Callout;
   synced_block?: SyncedBlock;
   toggle?: Toggle;
+  child_page: ChildPage;
   embed?: Embed;
   video?: Video;
   bookmark?: Bookmark;
   link_preview?: LinkPreview;
   table?: Table;
   column_list?: ColumnList;
+  column: Column;
   table_of_contents?: TableOfContents;
   link_to_page?: LinkToPage;
   children?: Block[];
@@ -75,6 +79,14 @@ export type Heading3 = {
   color: string;
   is_toggleable: boolean;
   children?: Block[];
+};
+
+export type BulletedList = {
+  children: Block[];
+};
+
+export type NumberedList = {
+  children: Block[];
 };
 
 export type BulletedListItem = {
@@ -164,6 +176,10 @@ export type Toggle = {
   rich_text: RichText[];
   color: string;
   children: Block[];
+};
+
+export type ChildPage = {
+  title: string;
 };
 
 export type Embed = {
