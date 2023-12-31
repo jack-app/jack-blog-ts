@@ -4,11 +4,12 @@ import { Block, RichText } from "@/types/block";
 
 type Props = {
   block: Block;
-  richTexts: RichText[];
+  richTexts?: RichText[];
   pageId: string;
 };
 
-export const ListItem: React.FC<Props> = ({ block, richTexts, pageId }) => {
+export const ListItemPresentation: React.FC<Props> = ({ block, richTexts, pageId }) => {
+  if (!richTexts) return null;
   return (
     <li key={block.id}>
       <Text text={richTexts} />

@@ -1,7 +1,18 @@
+import { renderBlock } from "@/features/ArticleDetailBody/hooks/renderBlock";
+import { Block } from "@/types/block";
 type Props = {
-  children: React.ReactNode;
+  blocks?: Block[];
+  pageId: string;
 };
 
-export const BulletedListPresentation: React.FC<Props> = ({ children }) => {
-  return <ul className="list-outside list-disc pl-40">{children}</ul>;
+export const BulletedListPresentation: React.FC<Props> = ({ blocks, pageId }) => {
+  if (!blocks) return null;
+  return (
+    <ul className="list-outside list-disc pl-40">
+      {blocks &&
+        blocks.map((block: Block) => {
+          return renderBlock(block, pageId);
+        })}
+    </ul>
+  );
 };

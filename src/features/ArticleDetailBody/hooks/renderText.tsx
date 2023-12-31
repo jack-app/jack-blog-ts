@@ -1,5 +1,5 @@
 import { RichText } from "@/types/block";
-import styles from "./post.module.css";
+import styles from "./text.module.css";
 
 export const Text = ({ text }: { text: RichText[] }) => {
   return text.map((value: RichText) => {
