@@ -5,15 +5,15 @@ import { MdMailOutline } from "react-icons/md";
 
 export const Footer = () => {
   return (
-    <footer className="bg-white px-140 py-90">
-      <div className="m-auto flex w-full max-w-[1200px] justify-between">
+    <footer className="bg-white py-80 md:px-100 lg:px-140 lg:py-90">
+      <div className="m-auto flex w-full max-w-[1200px] justify-evenly md:justify-between">
         <div className="flex flex-col items-center">
           <Link href="/" passHref>
             <img src="/OrangeLogo.png" alt="logo" className="w-[160px]" />
           </Link>
           <span className="text-detail1 text-subText">&copy;jack 2024</span>
         </div>
-        <div className="flex gap-110">
+        <div className="flex flex-col gap-80 md:flex-row md:gap-110">
           <div className="flex flex-col gap-30">
             <p className="font-bold">リンク</p>
             <div className="flex flex-col gap-20">
