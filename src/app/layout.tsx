@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Notification
           title="サイト移転のお知らせ"
           description="jack-webは下記のアドレスに移動しました"
-          link="www.jackun???.com" />
+          link="https://www.jackun?????.com" />
         {children}
         <Footer />
         <Analytics />

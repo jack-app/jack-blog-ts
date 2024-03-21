@@ -1,5 +1,5 @@
 import React from 'react';
-import { StringLiteral } from 'typescript';
+import Link from "next/link";
 
 
 type Props = {
@@ -27,11 +27,15 @@ export const Notification: React.FC<Props> = ({
         <div className="text-center text-[#FFA61F] text-[40px] font-bold">{title}</div>
         <div className="w-[70%] h-[6px] bg-[#FFE500]"></div>
         <div className="text-center text-[#FFA61F] text-[32px]">{description}</div>
-        <div className="flex items-center  h-[1.5em] max-w-[45%] text-[32px] bg-[#FFA61F] rounded-[20px]">
+        <div className="flex items-center  h-[1.5em] max-w-[45%] text-[32px] bg-[#FFA61F] rounded-[20px] hover:scale-110 duration-300">
           <div className="ml-[20px] w-[15px] h-[20px] bg-[#FFFFFF] [clip-path:polygon(_0%_0%,_0%_100%,_100%_50%)]"></div> {/* 三角形 */}
           <div className="ml-[5px]  w-[15px] h-[20px] bg-[#FFFFFF] [clip-path:polygon(_0%_0%,_0%_100%,_100%_50%)]"></div>
           <div className="ml-[5px]  w-[15px] h-[20px] bg-[#FFFFFF] [clip-path:polygon(_0%_0%,_0%_100%,_100%_50%)]"></div>
-          <p className="ml-[20px] mr-[20px] text-[#FFFFFF]">{link}</p>
+          <Link
+            href={link}
+            rel="noopener noreferrer"
+            target="_blank"
+            className="ml-[20px] mr-[20px] text-[#FFFFFF]" >{link}</Link>
         </div>
       </div>
     </div>
