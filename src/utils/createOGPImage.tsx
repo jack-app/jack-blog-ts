@@ -5,7 +5,8 @@ import sharp from "sharp";
 // ogp画像を動的に生成。
 // Next.jsのデフォルトでサポートされているが、edgeランタイムで使用するとエラーになるため、satoriを使用。
 const createOGPImage = async function (id: string, title: string, writerName: string) {
-  const fontData = fs.readFileSync("public/ZenKakuGothicNew-Regular.ttf");
+  const regularFont = fs.readFileSync("public/ZenKakuGothicNew-Regular.ttf");
+  const boldFont = fs.readFileSync("public/ZenKakuGothicNew-Bold.ttf");
 
   const path = `public/${id}/`;
   const cover = `${path}ogp.png`;
@@ -26,7 +27,7 @@ const createOGPImage = async function (id: string, title: string, writerName: st
         alignItems: "center",
         justifyContent: "center",
         backgroundImage: "linear-gradient(90deg, #FFC121, #FF5E2C)",
-        fontFamily: "Noto Sans JP",
+        fontFamily: "Zen Kaku Gothic New",
       }}
     >
       <div
@@ -44,7 +45,7 @@ const createOGPImage = async function (id: string, title: string, writerName: st
           padding: "32px 64px",
         }}
       >
-        <div style={{ display: "flex", fontSize: "48px", fontWeight: "bold" }}>{title}</div>
+        <div style={{ display: "flex", fontSize: "48px", fontWeight: 700 }}>{title}</div>
         <div style={{ display: "flex", fontSize: "32px" }}>@{writerName}</div>
       </div>
     </div>,
@@ -54,7 +55,15 @@ const createOGPImage = async function (id: string, title: string, writerName: st
       fonts: [
         {
           name: "Zen Kaku Gothic New",
-          data: fontData,
+          data: regularFont,
+          weight: 400,
+          style: "normal",
+        },
+        {
+          name: "Zen Kaku Gothic New",
+          data: boldFont,
+          weight: 700,
+          style: "normal",
         },
       ],
     }
