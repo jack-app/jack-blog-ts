@@ -13,14 +13,23 @@ export const useGetArticles: UseGetArticles = async (tagParam?: string, writerPa
   const databaseId = process.env.NOTION_DATABASE_ID;
   const articleDb = await getDatabase(databaseId);
 
+  const currentDate = new Date().toISOString().slice(0, 10);
+
   const articles = await Promise.all(
     articleDb
       .filter((article: any) => {
+        if (
+          article.properties.Publish_Date.date &&
+          article.properties.Publish_Date.date.start > currentDate
+        )
+          return false;
+
         const isPublished = article.properties.Publish.checkbox === true;
         const hasTag = article.properties.tag.multi_select.some((tag: any) => {
           return tag.name === tagParam;
         });
         const hasWriter = article.properties.Writer.created_by.name === writerParam;
+
         if (tagParam) return isPublished && hasTag;
         if (writerParam) return isPublished && hasWriter;
         return isPublished;
