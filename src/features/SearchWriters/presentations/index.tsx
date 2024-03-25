@@ -12,7 +12,7 @@ export const SearchWritersPresentation: React.FC<Props> = ({ writers }) => {
     <div className="flex max-w-[200px] flex-col gap-50">
       <h3>Writers</h3>
       <div className="flex flex-col gap-30">
-        {writers.slice(0, 10).map((writer) => (
+        {writers.slice(0, 6).map((writer) => (
           <Writer key={writer.name} {...writer} />
         ))}
         <Link
