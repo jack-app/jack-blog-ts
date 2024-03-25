@@ -5,8 +5,15 @@ export const useTags = async () => {
   const databaseId = process.env.NOTION_DATABASE_ID;
   const articleDb = await getDatabase(databaseId);
 
+  const currentDate = new Date().toISOString().slice(0, 10);
+
   const results = articleDb
     .filter((article: any) => {
+      if (
+        article.properties.Publish_Date.date &&
+        article.properties.Publish_Date.date.start > currentDate
+      )
+        return false;
       return article.properties.Publish.checkbox === true;
     })
     .map((article: any) => {
