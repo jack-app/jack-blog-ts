@@ -1,15 +1,18 @@
+import { InlineMath } from "react-katex";
 import { RichText } from "@/types/block";
 import styles from "./text.module.css";
+import "katex/dist/katex.min.css";
 
 export const Text = ({ text }: { text: RichText[] }) => {
   return text.map((value: RichText) => {
     const {
       annotations: { bold, code, color, italic, strikethrough, underline },
+      equation,
       text,
     } = value;
+    if (equation) return <InlineMath math={equation.expression} />;
 
     if (!text) return null;
-
     return (
       <span
         className={[
