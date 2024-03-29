@@ -12,7 +12,11 @@ export const CalloutPresentation: React.FC<Props> = ({ texts, icon, color }) => 
     <div className="flex gap-30 bg-[#F5F5FC] p-40">
       {icon && (
         <div className="h-[24px] w-[24px]">
-          {icon.type === "emoji" ? icon.emoji : <img src={icon.url} alt="" />}
+          {icon.type === "emoji" ? (
+            (icon as Emoji).emoji
+          ) : (
+            <img src={(icon as FileObject).url} alt="" />
+          )}
         </div>
       )}
       <div className="inline whitespace-break-spaces">
