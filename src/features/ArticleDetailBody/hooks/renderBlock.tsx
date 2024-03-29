@@ -1,6 +1,7 @@
 import { Block } from "@/types/block";
 import { BookmarkPresentation } from "../presentations/blocks/bookmark";
 import { BulletedListPresentation } from "../presentations/blocks/bulletedList";
+import { CalloutPresentation } from "../presentations/blocks/callout";
 import { ChildPagePresentation } from "../presentations/blocks/childPage";
 import { CodePresentation } from "../presentations/blocks/code";
 import { ColumnPresentation } from "../presentations/blocks/column";
@@ -91,6 +92,15 @@ export const renderBlock = async (block: Block, pageId: string) => {
     }
     case "equation":
       return <EquationPresentation math={block[type]?.expression} />;
+    case "callout":
+      console.log(block[type]);
+      return (
+        <CalloutPresentation
+          texts={block[type]?.rich_text}
+          icon={block[type]?.icon}
+          color={block[type]?.color}
+        />
+      );
     default:
       return null;
   }
