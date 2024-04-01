@@ -93,7 +93,6 @@ export const renderBlock = async (block: Block, pageId: string) => {
     case "equation":
       return <EquationPresentation math={block[type]?.expression} />;
     case "callout":
-      console.log(block[type]);
       return (
         <CalloutPresentation
           texts={block[type]?.rich_text}
@@ -101,6 +100,31 @@ export const renderBlock = async (block: Block, pageId: string) => {
           color={block[type]?.color}
         />
       );
+    case "video":
+      if (block[type]?.type === "external") {
+        const youtubeUrl = block[type]?.external?.url;
+        if (!youtubeUrl) return null;
+        const youtubeEmbedUrl = youtubeUrl.replace("shorts", "embed").replace("watch?v=", "embed/");
+        return (
+          <iframe
+            key={id}
+            height={500}
+            src={youtubeEmbedUrl}
+            allowFullScreen
+            title={youtubeUrl}
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          />
+        );
+      }
+
+      if (block[type]?.type === "file") {
+        return (
+          <video key={id} controls>
+            <source src={block[type]?.file?.url} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        );
+      }
     default:
       return null;
   }
