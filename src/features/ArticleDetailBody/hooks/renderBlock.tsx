@@ -19,6 +19,7 @@ import { QuotePresentation } from "../presentations/blocks/quote";
 import { TablePresentation } from "../presentations/blocks/table";
 import { ToDoPresentation } from "../presentations/blocks/toDo";
 import { TogglePresentation } from "../presentations/blocks/toggle";
+import { VideoPresentation } from "../presentations/blocks/video";
 
 export const renderBlock = async (block: Block, pageId: string) => {
   // notionのブロックの種類によって、表示を変える
@@ -93,7 +94,6 @@ export const renderBlock = async (block: Block, pageId: string) => {
     case "equation":
       return <EquationPresentation math={block[type]?.expression} />;
     case "callout":
-      console.log(block[type]);
       return (
         <CalloutPresentation
           texts={block[type]?.rich_text}
@@ -101,6 +101,8 @@ export const renderBlock = async (block: Block, pageId: string) => {
           color={block[type]?.color}
         />
       );
+    case "video":
+      <VideoPresentation video={block[type]} id={id} />;
     default:
       return null;
   }
