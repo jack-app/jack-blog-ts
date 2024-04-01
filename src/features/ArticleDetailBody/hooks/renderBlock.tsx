@@ -102,7 +102,7 @@ export const renderBlock = async (block: Block, pageId: string) => {
         />
       );
     case "video":
-      <VideoPresentation video={block[type]} id={id} />;
+      return <VideoPresentation video={block[type]} id={id} />;
     default:
       return null;
   }
